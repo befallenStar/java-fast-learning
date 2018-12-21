@@ -9,7 +9,7 @@ public class ArrayDemo {
                 "sort按升序顺序进行排序。排序完的结果覆盖到原数组当中去。");
         Arrays.sort(data);
         printArray(data);
-        System.out.println("通过重载Comparator借口实现不同类型数据排序或降序排序。");
+        System.out.println("通过重载Comparator接口实现不同类型数据排序或降序排序。");
         Comparator cmp=new MyComparator();
         Arrays.sort(data,cmp);
         printArray(data);
