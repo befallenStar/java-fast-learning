@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6afa46c-6369-420b-a857-086d6874df1e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../lanqiao_xiaonei2/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_xiaonei2/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_xiaonei3/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_xiaonei3/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_xiaonei4/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_xiaonei4/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_xiaonei6/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_xiaonei6/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_xiaonei7/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_xiaonei7/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_xiaonei8/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_xiaonei8/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lanqiao_maxmin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lanqiao_maxmin/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="c6afa46c-6369-420b-a857-086d6874df1e" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +15,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="438">
-              <caret line="24" column="1" lean-forward="true" selection-end-line="25" />
+              <caret line="24" column="1" selection-end-line="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,6 +56,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -83,7 +68,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -131,9 +115,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25718608" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -165,7 +148,7 @@
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="438">
-          <caret line="24" column="1" lean-forward="true" selection-end-line="25" />
+          <caret line="24" column="1" selection-end-line="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
