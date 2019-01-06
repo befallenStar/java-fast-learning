@@ -3,11 +3,13 @@ import net.sf.json.JSONObject;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
 
 class JDialogSignIn extends JDialog {
     private String username, password;
     private boolean isLogin = false;
     private Frame parent;
+    private int authority=0;
     JDialogSignIn(Frame Frame, String title) {
         super(Frame, title, true);
         parent=Frame;
@@ -38,8 +40,17 @@ class JDialogSignIn extends JDialog {
 
         JRadioButton stu=new JRadioButton("学生");
         stu.setBounds(130,180,100,20);
+        stu.setSelected(true);
         JRadioButton tch=new JRadioButton("教师");
         tch.setBounds(250,180,100,20);
+        stu.addItemListener(e -> {
+            if(e.getStateChange()==ItemEvent.SELECTED)
+                authority=0;
+        });
+        tch.addItemListener(e -> {
+            if(e.getStateChange()==ItemEvent.SELECTED)
+                authority=1;
+        });
         ButtonGroup bg=new ButtonGroup();
         bg.add(stu);
         bg.add(tch);
@@ -52,16 +63,33 @@ class JDialogSignIn extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 username = t_un.getText();
                 password = String.valueOf(t_pw.getPassword());
-                String content=new JsonRead("src/json/stuInfo.json").readContent();
-                JSONObject all = JSONObject.fromObject(new JsonRead("src/json/stuInfo.json").readContent());
-                if (all.has("students")) {
-                    for (Object student : all.getJSONArray("students")) {
-                        JSONObject stu = JSONObject.fromObject(student);
-                        if (username.equals(stu.getString("username")) && password.equals(stu.getString("password"))) {
-                            isLogin = true;
-                            setVisible(false);
-                            parent.dispose();
-                            //JMain main=new JMain
+                if(authority==0) {
+                    JSONObject all = JSONObject.fromObject(new JsonRead("src/json/stuInfo.json").readContent());
+                    if (all.has("students")) {
+                        for (Object student : all.getJSONArray("students")) {
+                            JSONObject stu = JSONObject.fromObject(student);
+                            if (username.equals(stu.getString("username")) && password.equals(stu.getString("password"))) {
+                                isLogin = true;
+                                setVisible(false);
+                                JMain main = new JMain(username, authority);
+                                main.setVisible(true);
+                                main.setLocationRelativeTo(null);
+                                parent.dispose();
+                            }
+                        }
+                    }
+                }else{
+                    JSONObject all = JSONObject.fromObject(new JsonRead("src/json/tchInfo.json").readContent());
+                    if (all.has("teachers")) {
+                        for (Object teacher : all.getJSONArray("teachers")) {
+                            JSONObject tch = JSONObject.fromObject(teacher);
+                            if (username.equals(tch.getString("username")) && password.equals(tch.getString("password"))) {
+                                isLogin = true;
+                                setVisible(false);
+                                JMain main = new JMain(username, authority);
+                                main.setVisible(true);
+                                parent.dispose();
+                            }
                         }
                     }
                 }

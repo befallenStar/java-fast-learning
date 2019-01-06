@@ -1,0 +1,23 @@
+{
+	"courses":[
+		{
+			"name":"计算机网络",
+			"credit":"3",
+			"teacher":"another"
+		},
+		{
+			"name":"软件工程体系结构",
+			"credit":"4",
+			"teacher":"another"
+		},
+		{
+			"name":"数据结构",
+			"credit":"3",
+			"teacher":"admin"
+		},
+		{
+			"name":"计算机安全",
+			"credit":"2",
+			"teacher":"admin"
+		}]
+}
