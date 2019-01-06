@@ -6,12 +6,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
 
 class JDialogSignUp extends JDialog {
+    private Frame parent;
     JDialogSignUp(Frame Frame, String title) {
         super(Frame, title, true);
+        parent=Frame;
         this.setTitle(title);
         this.setSize(400, 500);
         this.setLocationRelativeTo(null);
@@ -132,6 +132,7 @@ class JDialogSignUp extends JDialog {
                     new JsonWrite("src/json/stuInfo.json").writeContent(all.toString());
                 }
                 setVisible(false);
+                parent.dispose();
             }
         });
 

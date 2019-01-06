@@ -1,4 +1,3 @@
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import javax.swing.*;
@@ -8,9 +7,10 @@ import java.awt.event.ActionEvent;
 class JDialogSignIn extends JDialog {
     private String username, password;
     private boolean isLogin = false;
-
+    private Frame parent;
     JDialogSignIn(Frame Frame, String title) {
         super(Frame, title, true);
+        parent=Frame;
         this.setTitle(title);
         this.setSize(400, 350);
         this.setLocationRelativeTo(null);
@@ -60,6 +60,8 @@ class JDialogSignIn extends JDialog {
                         if (username.equals(stu.getString("username")) && password.equals(stu.getString("password"))) {
                             isLogin = true;
                             setVisible(false);
+                            parent.dispose();
+                            //JMain main=new JMain
                         }
                     }
                 }

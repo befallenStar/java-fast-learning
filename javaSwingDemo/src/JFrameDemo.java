@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class JFrameDemo extends JFrame {
-    private String username,password;
     private JDialogSignUp signUpDialog;
     private JDialogSignIn signInDialog;
     private JFrameDemo(){
@@ -35,8 +34,6 @@ public class JFrameDemo extends JFrame {
                 signInDialog=new JDialogSignIn(JFrameDemo.this,"登录");
                 signInDialog.setModal(true);
                 signInDialog.setVisible(true);
-                username=signInDialog.getUsername();
-                password=signInDialog.getPassword();
             }
         });
         c.add(signUp);
