@@ -1,0 +1,36 @@
+{
+	"students":[
+		{
+			"username":"沈嘉豪",
+			"password":"123456",
+			"gender":"男",
+			"number":"19160219",
+			"college":"计算机科学与技术学院",
+			"depart":"软件工程（嵌入式培养）"
+		},
+		{
+			"username":"aaa",
+			"password":"111",
+			"gender":"女",
+			"number":"02180212",
+			"college":"社会发展学院",
+			"depart":"文物与博物馆学"
+		},
+		{
+			"username":"111",
+			"password":"111",
+			"gender":"男",
+			"number":"111111111",
+			"college":"文学院",
+			"depart":"中国语言文学类（含汉语言文学（国家文科基地）、秘书学）"
+		},
+		{
+			"username":"1111",
+			"password":"1111",
+			"gender":"男",
+			"number":"1111",
+			"college":"文学院",
+			"depart":"中国语言文学类（含汉语言文学（国家文科基地）、秘书学）"
+		}
+	]
+}
