@@ -73,7 +73,6 @@ class JDialogSignIn extends JDialog {
                                 setVisible(false);
                                 JMain main = new JMain(username, authority);
                                 main.setVisible(true);
-                                main.setLocationRelativeTo(null);
                                 parent.dispose();
                             }
                         }

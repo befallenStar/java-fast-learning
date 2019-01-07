@@ -134,6 +134,8 @@ class JDialogSignUp extends JDialog {
                     new JsonWrite("src/json/stuInfo.json").writeContent(all.toString());
                 }
                 setVisible(false);
+                JMain main = new JMain(username, 0);
+                main.setVisible(true);
                 parent.dispose();
             }
         });

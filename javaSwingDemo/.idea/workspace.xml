@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4eb197c2-d203-46f9-8d90-e80228b7ca63" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/JsonFind.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignIn$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignIn$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignIn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignUp$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignUp$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JsonBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JsonBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JsonWrite.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JsonWrite.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/json/stuInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/json/stuInfo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/json/tchInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/json/tchInfo.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JDialogSignIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JDialogSignIn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JDialogSignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JDialogSignUp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JsonBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JsonWrite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonWrite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/json/stuInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/json/stuInfo.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/json/tchInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/json/tchInfo.json" afterDir="false" />
     </list>
@@ -19,44 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/JFrameDemo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="25" column="46" selection-start-line="25" selection-start-column="46" selection-end-line="25" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/JDialogSignUp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="890">
-              <caret line="147" column="17" selection-start-line="147" selection-start-column="17" selection-end-line="147" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/JsonBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/JMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="56" column="19" lean-forward="true" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
+            <state relative-caret-position="703">
+              <caret line="81" column="47" lean-forward="true" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,16 +43,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/JDialogSignIn.java">
+        <entry file="file://$PROJECT_DIR$/src/JsonFind.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="60" selection-start-line="60" selection-end-line="60" />
+            <state relative-caret-position="-513">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1805#3888#0" expanded="true" />
-                <element signature="e#3887#3888#0" expanded="true" />
-                <element signature="e#4077#4078#0" expanded="true" />
-                <element signature="e#4136#4137#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,20 +57,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/JsonWrite.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/JsonRead.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state>
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -123,11 +84,13 @@
         <option value="$PROJECT_DIR$/src/json/stuInfo.json" />
         <option value="$PROJECT_DIR$/src/JsonFormat.java" />
         <option value="$PROJECT_DIR$/src/JsonRead.java" />
-        <option value="$PROJECT_DIR$/src/JsonWrite.java" />
         <option value="$PROJECT_DIR$/src/JFrameDemo.java" />
+        <option value="$PROJECT_DIR$/src/JDialogSignIn.java" />
         <option value="$PROJECT_DIR$/src/JDialogSignUp.java" />
         <option value="$PROJECT_DIR$/src/JsonBean.java" />
-        <option value="$PROJECT_DIR$/src/JDialogSignIn.java" />
+        <option value="$PROJECT_DIR$/src/json/stu.json" />
+        <option value="$PROJECT_DIR$/src/JsonWrite.java" />
+        <option value="$PROJECT_DIR$/src/JsonFind.java" />
         <option value="$PROJECT_DIR$/src/JMain.java" />
       </list>
     </option>
@@ -145,7 +108,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -169,10 +131,11 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546790523833" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546846988724" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -232,7 +195,7 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2685325" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15204236" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -240,7 +203,7 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" weight="0.17096774" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.2580645" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -259,35 +222,87 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
     </layout>
-  </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="content" />
-      </configuration>
-    </watches-manager>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27231467" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.17096774" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.2580645" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32903227" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32903227" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50075644" side_tool="true" weight="0.32903227" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32903227" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32903227" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+    </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/JDialogDemo.java" />
     <entry file="file://$PROJECT_DIR$/src/json/stuInfo.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JsonFormat.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/javax/swing/plaf/basic/BasicButtonListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+        <state relative-caret-position="161">
+          <caret line="251" selection-start-line="251" selection-end-line="251" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JDialogSignIn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="73" selection-start-line="73" selection-end-line="75" />
           <folding>
-            <element signature="e#143#144#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1838#3807#0" expanded="true" />
+            <element signature="e#3806#3807#0" expanded="true" />
+            <element signature="e#4046#4047#0" expanded="true" />
+            <element signature="e#4077#4078#0" expanded="true" />
+            <element signature="e#4105#4106#0" expanded="true" />
+            <element signature="e#4136#4137#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JsonWrite.java">
+    <entry file="file://$PROJECT_DIR$/src/JDialogSignUp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+        <state relative-caret-position="309">
+          <caret line="136" column="50" selection-start-line="136" selection-start-column="50" selection-end-line="136" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JsonBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="24" lean-forward="true" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JsonFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+          <folding>
+            <element signature="e#99#100#0" expanded="true" />
+            <element signature="e#143#144#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -302,33 +317,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JDialogSignUp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="890">
-          <caret line="147" column="17" selection-start-line="147" selection-start-column="17" selection-end-line="147" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JDialogSignIn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="60" selection-start-line="60" selection-end-line="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1805#3888#0" expanded="true" />
-            <element signature="e#3887#3888#0" expanded="true" />
-            <element signature="e#4077#4078#0" expanded="true" />
-            <element signature="e#4136#4137#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/JsonRead.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
+        <state relative-caret-position="38">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -336,17 +327,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JsonBean.java">
+    <entry file="file://$PROJECT_DIR$/src/JsonWrite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+        <state>
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JsonFind.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-513">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/json/stu.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-95">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/JMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="56" column="19" lean-forward="true" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
+        <state relative-caret-position="703">
+          <caret line="81" column="47" lean-forward="true" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
