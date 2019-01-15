@@ -2,24 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4eb197c2-d203-46f9-8d90-e80228b7ca63" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/JsonFind.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignIn$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignIn$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignIn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignIn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignUp$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignUp$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JDialogSignUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JMain$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JMain$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JMain$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JMain$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JMain$3.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JsonBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JsonBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JsonWrite.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JsonWrite.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/json/stuInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/json/stuInfo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/json/tchInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/json/tchInfo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JDialogSignIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JDialogSignIn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JDialogSignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JDialogSignUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JsonBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JsonWrite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JsonWrite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json/stuInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/json/stuInfo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/json/tchInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/json/tchInfo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/JsonFind.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaSwingDemo/JsonFind.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaSwingDemo/json/stu.json" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,8 +22,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/JMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="703">
-              <caret line="81" column="47" lean-forward="true" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
+            <state relative-caret-position="153">
+              <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -45,7 +34,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/JsonFind.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-513">
+            <state relative-caret-position="114">
               <caret line="9" selection-start-line="9" selection-end-line="9" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -108,6 +97,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -131,7 +121,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -141,7 +130,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -195,7 +184,7 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15204236" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15885022" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -327,9 +316,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JsonWrite.java">
+    <entry file="file://$PROJECT_DIR$/src/json/stu.json" />
+    <entry file="file://$PROJECT_DIR$/src/JMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="153">
+          <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -338,7 +329,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/JsonFind.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-513">
+        <state relative-caret-position="114">
           <caret line="9" selection-start-line="9" selection-end-line="9" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -346,17 +337,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/json/stu.json">
+    <entry file="file://$PROJECT_DIR$/src/JsonWrite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-95">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="703">
-          <caret line="81" column="47" lean-forward="true" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
+        <state>
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
