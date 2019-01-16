@@ -13,6 +13,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class PageController {
     @RequestMapping("/hello/{userId}")
     public ModelAndView hello(@PathVariable("userId") String userId){
-        User user=new User();
+        User user=new User(userId,"张三","1234","女",12);
+        //创建modelandview对象
+        ModelAndView modelAndView = new ModelAndView();
+        //将user传入modelandview
+        //request.setAttribute("user",user);
+        modelAndView.addObject("user",user);
+        //指定返回到哪个页面
+        //springboot默认情况下帮你省略了后缀名.html以及前缀完整路径
+        modelAndView.setViewName("Hello");
+        return modelAndView;
     }
 }
