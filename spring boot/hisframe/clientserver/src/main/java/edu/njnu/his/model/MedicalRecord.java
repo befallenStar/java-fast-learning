@@ -5,12 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class MedicalRecord {
-    private String id;
-    private String code;
-    private String name;
-    private String gender;
-    private Integer age;
+	private String id;
+	private String code;
+	private String name;
+	private String gender;
+	private Integer age;
 }
