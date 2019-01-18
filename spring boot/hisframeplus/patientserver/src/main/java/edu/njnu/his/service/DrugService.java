@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@FeignClient("drug-server")
+@FeignClient(value = "drug-server",fallback = DrugFallbackService.class)
 public interface DrugService{
 	@RequestMapping("/mrdr/{mrId}")
 	List<MrDr> getMrDrug(@PathVariable String mrId);
