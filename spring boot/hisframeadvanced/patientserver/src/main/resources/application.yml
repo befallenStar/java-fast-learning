@@ -3,6 +3,9 @@ server:
 spring:
     application:
         name: patient-server
+    data:
+        mongodb:
+            database: his
 eureka:
     client:
         service-url:
