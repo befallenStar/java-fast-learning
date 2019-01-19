@@ -1,0 +1,14 @@
+server:
+    port: 8083
+spring:
+    application:
+        name: patient-server
+    data:
+        mongodb:
+            database: his
+eureka:
+    client:
+        service-url:
+            defaultZone: http://${eureka.host:localhost}:${eureka.port:8761}/eureka
+    instance:
+        prefer-ip-address: true
