@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/clientserver/clientserver.iml" filepath="$PROJECT_DIR$/clientserver/clientserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hisframeadvanced.iml" filepath="$PROJECT_DIR$/hisframeadvanced.iml" />
+      <module fileurl="file://$PROJECT_DIR$/patientserver/patientserver.iml" filepath="$PROJECT_DIR$/patientserver/patientserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/registrycenter/registrycenter.iml" filepath="$PROJECT_DIR$/registrycenter/registrycenter.iml" />
+    </modules>
+  </component>
+</project>
