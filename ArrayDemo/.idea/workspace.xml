@@ -2,20 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87e51feb-b454-4e58-9f00-3b3494d7635c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../lanqiao_01string/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_01string/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_circlearea/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_circlearea/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_fibonacci/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_fibonacci/src/Fib.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_leapyear/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_leapyear/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_letterpic/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_letterpic/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_maxmin/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_maxmin/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_sum/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lanqiao_sum/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ArrayDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ArrayDemo.java" afterDir="false" />
     </list>
@@ -27,15 +13,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ArrayDemo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="247">
+              <caret line="73" column="30" lean-forward="true" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -52,6 +35,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>sort</find>
+      <find>arraycopy</find>
+      <find>add</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -78,6 +63,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -86,14 +72,20 @@
               <item name="ArrayDemo" type="b2602c69:ProjectViewProjectNode" />
               <item name="ArrayDemo" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ArrayDemo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ArrayDemo" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544524546079" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
@@ -134,22 +126,29 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1543825322096</updated>
+      <workItem from="1549084648924" duration="3760000" />
     </task>
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="3760000" />
+  </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2647504" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2685325" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32786885" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32741934" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.28196722" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -158,6 +157,7 @@
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" />
+      <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -167,6 +167,9 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -200,13 +203,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/List.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="500" column="63" selection-start-line="500" selection-start-column="55" selection-end-line="500" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ArrayDemo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="247">
+          <caret line="73" column="30" lean-forward="true" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
         </state>
       </provider>
     </entry>
