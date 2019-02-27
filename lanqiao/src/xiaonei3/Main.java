@@ -1,7 +1,6 @@
 package xiaonei3;
 
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Main{
@@ -14,7 +13,7 @@ public class Main{
 			q.add(sc.nextInt());
 		int sum = 0;
 		int result = 0;
-		int record = 0;
+		int record;
 		for(int j = 0; j < n; j++){
 			record = 0;
 			for(int i = 1; i < n + 1; i++){
