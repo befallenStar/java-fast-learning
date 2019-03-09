@@ -36,21 +36,19 @@ import java.util.Arrays;
  */
 class Solution {
     public int findMinArrowShots(int[][] points) {
-        if(points.length==0) return 0;
-        int result=1;
-        Arrays.sort(points,(o1,o2)->o1[1]-o2[1]);
-        int begin=0;
-        int finish=begin+1;
-        while(finish<points.length){
-            if(points[begin][1]<points[finish][0]){
+        if (points.length == 0)
+            return 0;
+        int result = 1;
+        Arrays.sort(points, (o1, o2) -> o1[1] - o2[1]);
+        int begin = 0;
+        int finish = begin + 1;
+        while (finish < points.length)
+            if (points[begin][1] < points[finish][0]) {
                 result++;
-                begin=finish;
-                finish=begin+1;
-            }else{
+                begin = finish;
+                finish = begin + 1;
+            } else
                 finish++;
-            }
-        }
         return result;
     }
 }
-

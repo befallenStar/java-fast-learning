@@ -34,20 +34,18 @@
  */
 class Solution {
     public int longestPalindrome(String s) {
-        int[] cnts=new int[58];
-        int result=0;
-        boolean hasSingle=false;
-        for(char c:s.toCharArray())
-            cnts[c-'A']++;
-        for(int cnt:cnts)
-        {
-            if(cnt%2==1&&!hasSingle)
-                hasSingle=true;
-            result+=cnt-cnt%2;
+        int[] cnts = new int[58];
+        int result = 0;
+        boolean hasSingle = false;
+        for (char c : s.toCharArray())
+            cnts[c - 'A']++;
+        for (int cnt : cnts) {
+            if (cnt % 2 == 1 && !hasSingle)
+                hasSingle = true;
+            result += cnt - cnt % 2;
         }
-        if(hasSingle)
-            result+=1;
+        if (hasSingle)
+            result += 1;
         return result;
     }
 }
-

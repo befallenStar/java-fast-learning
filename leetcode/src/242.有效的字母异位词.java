@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /*
  * @lc app=leetcode.cn id=242 lang=java
  *
@@ -35,15 +33,14 @@ import java.util.Arrays;
  */
 class Solution {
     public boolean isAnagram(String s, String t) {
-        int[] cs=new int[26];
-        for(char c:s.toCharArray())
-            cs[c-'a']++;
-        for(char c:t.toCharArray())
-            cs[c-'a']--;
-        for(int cnt:cs)
-            if(cnt!=0)
+        int[] cs = new int[26];
+        for (char c : s.toCharArray())
+            cs[c - 'a']++;
+        for (char c : t.toCharArray())
+            cs[c - 'a']--;
+        for (int cnt : cs)
+            if (cnt != 0)
                 return false;
         return true;
     }
 }
-

@@ -32,18 +32,17 @@ import java.util.Arrays;
  */
 class Solution {
 	public int[][] reconstructQueue(int[][] people) {
-		Arrays.sort(people,(o1, o2)->(o2[0]-o1[0])!=0?(o2[0]-o1[0]):(o1[1]-o2[1]));
-		for(int i=0;i<people.length;i++){
-			if(i!=people[i][1])
+		Arrays.sort(people, (o1, o2) -> (o2[0] - o1[0]) != 0 ? (o2[0] - o1[0]) : (o1[1] - o2[1]));
+		for (int i = 0; i < people.length; i++)
+			if (i != people[i][1])
 				insertElement(people, i, people[i][1]);
-		}
 		return people;
 	}
-	private void insertElement(int[][] o, int key, int index){
-		int[] ele=o[key];
-		//System.arraycopy(src, srcPos, dest, destPos, length);
-		System.arraycopy(o, index, o, index+1, key-index);
-		o[index]=ele;
+
+	private void insertElement(int[][] o, int key, int index) {
+		int[] ele = o[key];
+		// System.arraycopy(src, srcPos, dest, destPos, length);
+		System.arraycopy(o, index, o, index + 1, key - index);
+		o[index] = ele;
 	}
 }
-

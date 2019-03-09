@@ -55,30 +55,25 @@ import java.util.Comparator;
  * 
  */
 /**
- * Definition for an interval.
- * public class Interval {
- *     int start;
- *     int end;
- *     Interval() { start = 0; end = 0; }
- *     Interval(int s, int e) { start = s; end = e; }
- * }
+ * Definition for an interval. public class Interval { int start; int end;
+ * Interval() { start = 0; end = 0; } Interval(int s, int e) { start = s; end =
+ * e; } }
  */
 class Solution {
     public int eraseOverlapIntervals(Interval[] intervals) {
-        int result=0;
-        Arrays.sort(intervals,(o1,o2)->o1.end-o2.end);
-        int begin=0;
-        int finish=begin+1;
-        while(finish<intervals.length){
-            if(intervals[begin].end>intervals[finish].start){
+        int result = 0;
+        Arrays.sort(intervals, (o1, o2) -> o1.end - o2.end);
+        int begin = 0;
+        int finish = begin + 1;
+        while (finish < intervals.length) {
+            if (intervals[begin].end > intervals[finish].start) {
                 finish++;
                 result++;
-            }else{
-                begin=finish;
-                finish=begin+1;
+            } else {
+                begin = finish;
+                finish = begin + 1;
             }
         }
         return result;
     }
 }
-
