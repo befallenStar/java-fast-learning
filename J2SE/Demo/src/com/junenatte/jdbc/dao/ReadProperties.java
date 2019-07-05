@@ -24,7 +24,7 @@ class ReadProperties {
     private void readFile() {
         Properties properties = new Properties();
         try {
-            properties.load(getClass().getResourceAsStream("../db.properties"));
+            properties.load(getClass().getResourceAsStream("/com/junenatte/jdbc/db.properties"));
             url=properties.getProperty("jdbc.url");
             username=properties.getProperty("jdbc.username");
             password=properties.getProperty("jdbc.password");

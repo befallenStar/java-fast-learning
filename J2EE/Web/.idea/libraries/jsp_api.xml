@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="mybatis-3.5.1">
+  <library name="jsp-api">
     <CLASSES>
-      <root url="jar://D:/Apache Software Foundation/mybatis/mybatis-3.5.1.jar!/" />
+      <root url="jar://D:/jar/Apache Software Foundation/Tomcat/lib/jsp-api.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
