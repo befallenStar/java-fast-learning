@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.junenatte.imooc.dao.BannerMapper">
+  <resultMap id="BaseResultMap" type="com.junenatte.imooc.bean.Banner">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="imgpath" jdbcType="VARCHAR" property="imgpath" />
+    <result column="imgtext" jdbcType="VARCHAR" property="imgtext" />
+    <result column="order_num" jdbcType="INTEGER" property="orderNum" />
+    <result column="create_user" jdbcType="INTEGER" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, imgpath, imgtext, order_num, create_user, create_time, last_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from banner
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from banner
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.junenatte.imooc.bean.Banner">
+    insert into banner (id, imgpath, imgtext, 
+      order_num, create_user, create_time, 
+      last_time)
+    values (#{id,jdbcType=INTEGER}, #{imgpath,jdbcType=VARCHAR}, #{imgtext,jdbcType=VARCHAR}, 
+      #{orderNum,jdbcType=INTEGER}, #{createUser,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.junenatte.imooc.bean.Banner">
+    insert into banner
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="imgpath != null">
+        imgpath,
+      </if>
+      <if test="imgtext != null">
+        imgtext,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastTime != null">
+        last_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="imgpath != null">
+        #{imgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="imgtext != null">
+        #{imgtext,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastTime != null">
+        #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.junenatte.imooc.bean.Banner">
+    update banner
+    <set>
+      <if test="imgpath != null">
+        imgpath = #{imgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="imgtext != null">
+        imgtext = #{imgtext,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastTime != null">
+        last_time = #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.junenatte.imooc.bean.Banner">
+    update banner
+    set imgpath = #{imgpath,jdbcType=VARCHAR},
+      imgtext = #{imgtext,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_time = #{lastTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

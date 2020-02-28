@@ -1,0 +1,58 @@
+server:
+  port: 8888
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+spring:
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+      exclude: static/**.templates/**
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/imooc?characterEncoding=UTF-8&serverTimezone=UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: root
+      initial-size: 10
+      min-idle: 10
+      max-active: 100
+      min-evictable-idle-time-millis: 1800000
+      max-wait: 50000
+      validation-query: select 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      time-between-connect-error-millis: 60000
+      filter:
+        stat:
+          enabled: true
+          db-type: mysql
+          log-slow-sql: true
+          slow-sql-millis: 2000
+#  swagger.enabled=true
+#
+#  swagger.title=spring-boot-starter-swagger
+#  swagger.description=Starter for swagger 2.x
+#  swagger.version=1.4.0.RELEASE
+#  swagger.license=Apache License, Version 2.0
+#  swagger.licenseUrl=https://www.apache.org/licenses/LICENSE-2.0.html
+#  swagger.termsOfServiceUrl=https://github.com/dyc87112/spring-boot-starter-swagger
+#  swagger.contact.name=didi
+#  swagger.contact.url=http://blog.didispace.com
+#  swagger.contact.email=dyc87112@qq.com
+#  swagger.base-package=com.didispace
+#  swagger.base-path=/**
+#  swagger.exclude-path=/error, /ops/**
+
+swagger:
+  enabled: true
+  title: 我的imooc项目
+  description: imooc项目实例
+  version: 1.0.0
+  license: Apache License, Version 2.0
+  license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    name: 沈嘉豪
+    url: https://github.com/Junenatte-and-little-pig
+    email: sy5622_5@126.com

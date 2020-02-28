@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.junenatte.imooc.dao.ProjectMaterialMapper">
+  <resultMap id="BaseResultMap" type="com.junenatte.imooc.bean.ProjectMaterial">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="material_title" jdbcType="VARCHAR" property="materialTitle" />
+    <result column="material_path" jdbcType="VARCHAR" property="materialPath" />
+    <result column="material_suffix" jdbcType="VARCHAR" property="materialSuffix" />
+    <result column="material_icon" jdbcType="VARCHAR" property="materialIcon" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="project_id" jdbcType="INTEGER" property="projectId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, material_title, material_path, material_suffix, material_icon, create_time, project_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from project_material
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from project_material
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.junenatte.imooc.bean.ProjectMaterial">
+    insert into project_material (id, material_title, material_path, 
+      material_suffix, material_icon, create_time, 
+      project_id)
+    values (#{id,jdbcType=INTEGER}, #{materialTitle,jdbcType=VARCHAR}, #{materialPath,jdbcType=VARCHAR}, 
+      #{materialSuffix,jdbcType=VARCHAR}, #{materialIcon,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{projectId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.junenatte.imooc.bean.ProjectMaterial">
+    insert into project_material
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="materialTitle != null">
+        material_title,
+      </if>
+      <if test="materialPath != null">
+        material_path,
+      </if>
+      <if test="materialSuffix != null">
+        material_suffix,
+      </if>
+      <if test="materialIcon != null">
+        material_icon,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="materialTitle != null">
+        #{materialTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="materialPath != null">
+        #{materialPath,jdbcType=VARCHAR},
+      </if>
+      <if test="materialSuffix != null">
+        #{materialSuffix,jdbcType=VARCHAR},
+      </if>
+      <if test="materialIcon != null">
+        #{materialIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.junenatte.imooc.bean.ProjectMaterial">
+    update project_material
+    <set>
+      <if test="materialTitle != null">
+        material_title = #{materialTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="materialPath != null">
+        material_path = #{materialPath,jdbcType=VARCHAR},
+      </if>
+      <if test="materialSuffix != null">
+        material_suffix = #{materialSuffix,jdbcType=VARCHAR},
+      </if>
+      <if test="materialIcon != null">
+        material_icon = #{materialIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.junenatte.imooc.bean.ProjectMaterial">
+    update project_material
+    set material_title = #{materialTitle,jdbcType=VARCHAR},
+      material_path = #{materialPath,jdbcType=VARCHAR},
+      material_suffix = #{materialSuffix,jdbcType=VARCHAR},
+      material_icon = #{materialIcon,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      project_id = #{projectId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
