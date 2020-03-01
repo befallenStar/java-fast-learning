@@ -6,13 +6,19 @@
     <result column="imgpath" jdbcType="VARCHAR" property="imgpath" />
     <result column="imgtext" jdbcType="VARCHAR" property="imgtext" />
     <result column="order_num" jdbcType="INTEGER" property="orderNum" />
-    <result column="create_user" jdbcType="INTEGER" property="createUser" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
   </resultMap>
   <sql id="Base_Column_List">
     id, imgpath, imgtext, order_num, create_user, create_time, last_time
   </sql>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from banner
+    order by order_num
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -28,7 +34,7 @@
       order_num, create_user, create_time, 
       last_time)
     values (#{id,jdbcType=INTEGER}, #{imgpath,jdbcType=VARCHAR}, #{imgtext,jdbcType=VARCHAR}, 
-      #{orderNum,jdbcType=INTEGER}, #{createUser,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{orderNum,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
       #{lastTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.junenatte.imooc.bean.Banner">
@@ -70,7 +76,7 @@
         #{orderNum,jdbcType=INTEGER},
       </if>
       <if test="createUser != null">
-        #{createUser,jdbcType=INTEGER},
+        #{createUser,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -93,7 +99,7 @@
         order_num = #{orderNum,jdbcType=INTEGER},
       </if>
       <if test="createUser != null">
-        create_user = #{createUser,jdbcType=INTEGER},
+        create_user = #{createUser,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -109,7 +115,7 @@
     set imgpath = #{imgpath,jdbcType=VARCHAR},
       imgtext = #{imgtext,jdbcType=VARCHAR},
       order_num = #{orderNum,jdbcType=INTEGER},
-      create_user = #{createUser,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_time = #{lastTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}

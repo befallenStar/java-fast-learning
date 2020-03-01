@@ -2,6 +2,8 @@ package com.junenatte.imooc.dao;
 
 import com.junenatte.imooc.bean.Banner;
 
+import java.util.List;
+
 public interface BannerMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface BannerMapper {
     int updateByPrimaryKeySelective(Banner record);
 
     int updateByPrimaryKey(Banner record);
+
+    List<Banner> selectAll();
 }

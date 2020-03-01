@@ -36,7 +36,6 @@ public class VerifyCodeController {
     public void getCode(HttpServletResponse res){
         String code=VerifyCodeUtils.generateVerifyCode(4);
         session.setAttribute(SessionKeyUtil.CODE,code);
-        System.out.println(code);
         try {
             VerifyCodeUtils.outputImage(90, 35, res.getOutputStream(), code);
             res.getOutputStream().flush();

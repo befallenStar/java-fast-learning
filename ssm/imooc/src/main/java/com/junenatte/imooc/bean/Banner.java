@@ -24,7 +24,7 @@ public class Banner implements Serializable {
     private Integer orderNum;
 
     @ApiModelProperty(value = "轮播图片上传者")
-    private Integer createUser;
+    private String createUser;
 
     @ApiModelProperty(value = "轮播图片上传时间")
     private Date createTime;
@@ -66,11 +66,11 @@ public class Banner implements Serializable {
         this.orderNum = orderNum;
     }
 
-    public Integer getCreateUser() {
+    public String getCreateUser() {
         return createUser;
     }
 
-    public void setCreateUser(Integer createUser) {
+    public void setCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
