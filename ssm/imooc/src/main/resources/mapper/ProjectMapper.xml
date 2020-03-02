@@ -16,13 +16,58 @@
         <result column="browse_count" jdbcType="INTEGER" property="browseCount"/>
         <result column="download_count" jdbcType="INTEGER" property="downloadCount"/>
         <result column="istop" jdbcType="INTEGER" property="istop"/>
+        <collection property="projectImgsList" ofType="com.junenatte.imooc.bean.ProjectImgs">
+            <id column="img_id" jdbcType="INTEGER" property="id"/>
+            <result column="img_url" jdbcType="VARCHAR" property="imgUrl"/>
+            <result column="img_text" jdbcType="VARCHAR" property="imgText"/>
+            <result column="img_order" jdbcType="INTEGER" property="imgOrder"/>
+            <result column="project_id" jdbcType="INTEGER" property="projectId"/>
+        </collection>
+        <collection property="projectMaterialList"
+                    ofType="com.junenatte.imooc.bean.ProjectMaterial">
+            <id column="material_id" jdbcType="INTEGER" property="id"/>
+            <result column="material_title" jdbcType="VARCHAR" property="materialTitle"/>
+            <result column="material_path" jdbcType="VARCHAR" property="materialPath"/>
+            <result column="material_suffix" jdbcType="VARCHAR" property="materialSuffix"/>
+            <result column="material_icon" jdbcType="VARCHAR" property="materialIcon"/>
+            <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+            <result column="project_id" jdbcType="INTEGER" property="projectId"/>
+            <result column="type_id" javaType="INTEGER" property="typeId"/>
+            <association property="projectMaterialType"
+                         javaType="com.junenatte.imooc.bean.ProjectMaterialType">
+                <id column="type_id" jdbcType="INTEGER" property="id"/>
+                <result column="type_name" jdbcType="VARCHAR" property="typeName"/>
+            </association>
+        </collection>
     </resultMap>
     <sql id="Base_Column_List">
     id, project_title, project_subtitle, project_keywords, project_desc, project_cover, 
     project_price, create_user, create_time, last_update, browse_count, download_count, 
     istop
   </sql>
-
+    <sql id="Img_Column_List">
+            i.id img_id, i.img_url, i.img_text, i.img_order, i.project_id
+    </sql>
+    <sql id="Material_Column_List">
+            m.id material_id, m.material_title, m.material_path, m.material_suffix, m.material_icon, m.create_time,
+            m.project_id, m.type_id
+    </sql>
+    <sql id="Type_Column_List">
+            t.id type_id, t.type_name
+    </sql>
+    <select id="selectAllByPrimaryKey" resultMap="BaseResultMap" parameterType="Integer">
+        select
+        p.*,
+        <include refid="Img_Column_List"/>
+        ,
+        <include refid="Material_Column_List"/>
+        ,
+        <include refid="Type_Column_List"/>
+        from project p left join project_imgs i on p.id=i.project_id
+        left join project_material m on p.id=m.project_id
+        inner join project_material_type t on m.type_id=t.id
+        where p.id=#{id}
+    </select>
     <select id="selectByParam" resultMap="BaseResultMap">
         select * from project
         <where>
@@ -42,6 +87,7 @@
         </if>
     </select>
 
+
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -60,11 +106,11 @@
       istop)
     values (#{id,jdbcType=INTEGER}, #{projectTitle,jdbcType=VARCHAR}, #{projectSubtitle,jdbcType=VARCHAR}, 
       #{projectKeywords,jdbcType=VARCHAR}, #{projectDesc,jdbcType=VARCHAR}, #{projectCover,jdbcType=VARCHAR}, 
-      #{projectPrice,jdbcType=REAL}, #{createUser,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{projectPrice,jdbcType=REAL}, #{createUser,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
       #{lastUpdate,jdbcType=TIMESTAMP}, #{browseCount,jdbcType=INTEGER}, #{downloadCount,jdbcType=INTEGER}, 
       #{istop,jdbcType=INTEGER})
   </insert>
-    <insert id="insertSelective" parameterType="com.junenatte.imooc.bean.Project">
+    <insert id="insertSelective" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.junenatte.imooc.bean.Project">
         insert into project
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">

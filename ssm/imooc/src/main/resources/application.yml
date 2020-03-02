@@ -30,6 +30,10 @@ spring:
           db-type: mysql
           log-slow-sql: true
           slow-sql-millis: 2000
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/static/
 #  swagger.enabled=true
 #
 #  swagger.title=spring-boot-starter-swagger
@@ -56,3 +60,12 @@ swagger:
     name: 沈嘉豪
     url: https://github.com/Junenatte-and-little-pig
     email: sy5622_5@126.com
+
+imooc:
+  upload:
+    path:
+      headimg: headimg
+      project:
+        cover: project_cover
+        imgs: project_imgs
+        material: project_material

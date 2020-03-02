@@ -6,6 +6,7 @@ import com.junenatte.imooc.util.ResultBean;
 import com.junenatte.imooc.util.SessionKeyUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +23,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
-import javax.servlet.http.HttpSession;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -35,12 +34,12 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("imooc_user")
 @Api(value = "用户管理", tags = "用户管理")
-public class ImoocUserController {
+public class ImoocUserController extends BaseController {
     @Autowired
     private ImoocUserMapper mapper;
 
-    @Autowired
-    private HttpSession session;
+    @Value("${imooc.upload.path.headimg")
+    private String headimgPath;
 
     @ApiOperation(value = "用户登录")
     @ApiImplicitParams({
@@ -106,9 +105,10 @@ public class ImoocUserController {
                 resultBean = new ResultBean<>(ResultBean.Code.failure, "用户已存在，请直接登录！");
             } else {
                 imoocUser = new ImoocUser();
-                imoocUser.setRickname(nickname);
+                imoocUser.setNickname(nickname);
                 imoocUser.setPhone(phone);
                 imoocUser.setPassword(password);
+                imoocUser.setImg("user_default");
                 imoocUser.setCreateTime(new Date());
                 imoocUser.setLastUpdate(new Date());
                 int rows = mapper.insertSelective(imoocUser);
@@ -168,7 +168,7 @@ public class ImoocUserController {
             imoocUser.setPassword(newPwd);
             int rows = mapper.updateByPrimaryKeySelective(imoocUser);
             if (rows > 0) {
-                ImoocUser iUser=mapper.selectByPrimaryKey(imoocUser.getId());
+                ImoocUser iUser = mapper.selectByPrimaryKey(imoocUser.getId());
                 iUser.setPassword("");
                 resultBean = new ResultBean<>(ResultBean.Code.success, "更新成功", iUser);
             } else {
@@ -181,14 +181,12 @@ public class ImoocUserController {
         return resultBean;
     }
 
-    @ApiOperation(value = "用户上传头像")
+    @ApiOperation(value = "用户上传头像", httpMethod = "POST", consumes = "multipart/form-data")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "id", value = "用户id", dataType = "Integer", paramType = "query"),
-            @ApiImplicitParam(name = "oldPwd", value = "原密码", dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "newPwd", value = "新密码", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "img", value = "头像文件", dataType = "__file", paramType = "form"),
     })
     @PostMapping("upload/img")
-    public ResultBean<ImoocUser> uploadImg(Integer id, @RequestParam("img") MultipartFile img) {
+    public ResultBean<ImoocUser> uploadImg(@RequestParam("img") MultipartFile img) {
         ResultBean<ImoocUser> resultBean;
         try {
             if (img != null && img.getSize() > 0) {
@@ -208,11 +206,16 @@ public class ImoocUserController {
                     return resultBean;
                 }
                 String newName = UUID.randomUUID().toString() + suffix;
-                String parentPath = ResourceUtils.getURL("classpath:").getPath();
-                File file = new File(parentPath, newName);
+                String imgSavePath = "/static/" + headimgPath;
+                String parentPath = ResourceUtils.getURL("classpath:").getPath() + imgSavePath;
+                File dir = new File(parentPath);
+                if (!dir.exists()) {
+                    dir.mkdir();
+                }
+                File file = new File(dir, newName);
                 img.transferTo(file);
-                ImoocUser imoocUser = mapper.selectByPrimaryKey(id);
-                imoocUser.setImg(parentPath + newName);
+                ImoocUser imoocUser = mapper.selectByPrimaryKey(getCurrentImoocUser().getId());
+                imoocUser.setImg(imgSavePath + newName);
                 imoocUser.setLastUpdate(new Date());
                 int rows = mapper.updateByPrimaryKeySelective(imoocUser);
                 if (rows > 0) {
@@ -225,16 +228,16 @@ public class ImoocUserController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            resultBean = new ResultBean<>(ResultBean.Code.exception, "更新异常异常！");
+            resultBean = new ResultBean<>(ResultBean.Code.exception, "上传异常！");
         }
         return resultBean;
     }
 
-    @ApiOperation(value="用户注销")
+    @ApiOperation(value = "用户注销")
     @PostMapping("loginOut")
-    public ResultBean<ImoocUser> loginOut(){
+    public ResultBean<ImoocUser> loginOut() {
         session.invalidate();
-        return new ResultBean<>(ResultBean.Code.success,"注销成功");
+        return new ResultBean<>(ResultBean.Code.success, "注销成功");
     }
 
     @ApiOperation(value = "查询单一用户")

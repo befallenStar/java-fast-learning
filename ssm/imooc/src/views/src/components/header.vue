@@ -64,8 +64,8 @@
     <!-- 搜索框END -->
     <!-- 登录信息 -->
     <div class="login-area">
-      <ul class="logined">
-        <li class="shop-cart">
+      <ul class="isLogined">
+        <li class="shop-cart" v-if="!isLogined">
           <a href class="shop-cart-icon" @mouseover="showcart(true)" @mouseout="showcart(false)">
             <i class="el-icon-shopping-cart-1"></i>
             购物车
@@ -120,19 +120,12 @@
           </div>
         </li>
         <!-- 未登录 -->
-        <li class="header-signin" v-if="!logined">
-          <a href="//www.imooc.com/user/newlogin" id="js-signin-btn">登录</a> /
-          <a href="//www.imooc.com/user/newsignup" id="js-signup-btn">注册</a>
+        <li class="header-signin" v-if="!isLogined">
+          <a href="/login" id="js-signin-btn">登录</a>
         </li>
         <!-- 购物车END -->
-        <li class="user-mycourse-box" v-if="logined">
-          <a class="user-card-item js-header-courseurl" href target="_self">
-            <span>我的项目</span>
-          </a>
-        </li>
-
         <!-- 头像 -->
-        <li class="set_btn user-card-box" id="header-user-card" v-if="logined">
+        <li class="set_btn user-card-box" id="header-user-card" v-if="isLogined">
           <a
             id="header-avator"
             @mouseover="showuser(true)"
@@ -150,25 +143,14 @@
             <div class="card-inner">
               <div class="card-top clearfix">
                 <a class="l" href="https://www.imooc.com/u/index/allcourses">
-                  <img src="../assets/user_default.jpg" alt="insofom" />
+                  <img :src="require('../assets/'+userImg+'.jpg')" :alt="nickname" />
                 </a>
                 <div class="card-top-right-box l">
                   <a href="https://www.imooc.com/u/index/allcourses">
-                    <span class="name text-ellipsis">insofom</span>
+                    <span class="name text-ellipsis">{{nickname}}</span>
                   </a>
-                  <div class="meta">
-                    <a href="/u/index/experience">
-                      经验
-                      <b id="js-user-mp">984</b>
-                    </a>
-                    <a href="/u/index/credit">
-                      积分
-                      <b id="js-user-credit">0</b>
-                    </a>
-                  </div>
                 </div>
               </div>
-
               <div class="user-center-box">
                 <ul class="clearfix">
                   <li class="l">
@@ -204,9 +186,8 @@
                 </div>
                 <div></div>
               </div>
-
               <div class="card-sets clearfix">
-                <a href="/">安全退出</a>
+                <a href="/" @click="logout">安全退出</a>
               </div>
             </div>
           </div>
@@ -232,8 +213,16 @@ export default {
       onuser: false,
       t3: {},
       t4: {},
-      logined: false
+      nickname:"",
+      userImg:"",
+      isLogined: false
     };
+  },
+  created(){
+    this.nickname=sessionStorage.getItem("userNickname");
+    this.userImg=sessionStorage.getItem("userImg");
+    this.isLogined=sessionStorage.getItem("isLogined");
+    console.log(sessionStorage);
   },
   methods: {
     change(flag) {
@@ -290,7 +279,10 @@ export default {
       this.t4 = setTimeout(() => {
         this.isuser = false;
       }, 300);
-    }
+    },
+    logout(){
+      sessionStorage.clear();
+    },
   },
   components: {}
 };
@@ -538,7 +530,7 @@ body {
   position: absolute;
   right: 0px;
 }
-.login-area .logined > li {
+.login-area .isLogined > li {
   float: left;
   position: relative;
 }
@@ -687,7 +679,7 @@ body {
   clear: both;
   visibility: hidden;
 }
-.login-area .logined > li > a {
+.login-area .isLogined > li > a {
   display: block;
   width: 80px;
   height: 72px;
@@ -758,17 +750,6 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.user-card-box .g-user-card .card-top .meta {
-  margin-top: 4px;
-  font-size: 12px;
-  line-height: 12px;
-}
-.user-card-box .g-user-card .card-top .meta a {
-  margin-right: 12px;
-}
-.user-card-box .g-user-card .card-top .meta b {
-  margin-left: 2px;
-}
 .user-card-box .g-user-card .user-center-box {
   margin-top: 16px;
   margin-bottom: 14px;
@@ -822,18 +803,18 @@ body {
   padding: 7px 0px;
 }
 .nav-item li a:hover,
-.login-area .logined > li > a:hover {
+.login-area .isLogined > li > a:hover {
   color: #07111b !important;
 }
 .header-signin {
   padding: 0px 15px;
 }
 
-.login-area .logined .header-signin a {
+.login-area .isLogined .header-signin a {
   color: #4d555d !important;
   display: inline;
 }
-.login-area .logined .header-signin a:hover {
+.login-area .isLogined .header-signin a:hover {
   color: #f20d0d !important;
 }
 </style>

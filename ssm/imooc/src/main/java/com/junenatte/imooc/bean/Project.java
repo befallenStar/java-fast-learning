@@ -2,6 +2,7 @@ package com.junenatte.imooc.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -32,7 +33,7 @@ public class Project implements Serializable {
     @ApiModelProperty(value="项目价格")
     private Float projectPrice;
 
-    @ApiModelProperty(value="项目创建者")
+    @ApiModelProperty(value="项目创建者id")
     private Integer createUser;
 
     @ApiModelProperty(value="项目创建时间")
@@ -49,6 +50,25 @@ public class Project implements Serializable {
 
     @ApiModelProperty(value="项目是否置顶")
     private Integer istop;
+
+    public List<ProjectImgs> getProjectImgsList() {
+        return projectImgsList;
+    }
+
+    public void setProjectImgsList(List<ProjectImgs> projectImgsList) {
+        this.projectImgsList = projectImgsList;
+    }
+
+    public List<ProjectMaterial> getProjectMaterialList() {
+        return projectMaterialList;
+    }
+
+    public void setProjectMaterialList(List<ProjectMaterial> projectMaterialList) {
+        this.projectMaterialList = projectMaterialList;
+    }
+
+    private List<ProjectImgs> projectImgsList;
+    private List<ProjectMaterial> projectMaterialList;
 
     private static final long serialVersionUID = 1L;
 

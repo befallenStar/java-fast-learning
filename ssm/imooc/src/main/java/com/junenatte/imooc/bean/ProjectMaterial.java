@@ -18,6 +18,26 @@ public class ProjectMaterial implements Serializable {
 
     private Integer projectId;
 
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
+
+    public ProjectMaterialType getProjectMaterialType() {
+        return projectMaterialType;
+    }
+
+    public void setProjectMaterialType(ProjectMaterialType projectMaterialType) {
+        this.projectMaterialType = projectMaterialType;
+    }
+
+    private Integer typeId;
+
+    private ProjectMaterialType projectMaterialType;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {

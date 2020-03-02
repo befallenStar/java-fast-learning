@@ -11,6 +11,16 @@ public class ProjectImgs implements Serializable {
 
     private Integer imgOrder;
 
+    private Integer projectId;
+
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {

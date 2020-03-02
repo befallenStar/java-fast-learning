@@ -1,7 +1,6 @@
 package com.junenatte.imooc.controller;
 
 import com.junenatte.imooc.bean.Banner;
-import com.junenatte.imooc.bean.TagsPage;
 import com.junenatte.imooc.dao.BannerMapper;
 import com.junenatte.imooc.util.ResultBean;
 
@@ -17,7 +16,7 @@ import io.swagger.annotations.Api;
 @Api(value = "首页轮播", tags = "首页轮播")
 @RestController
 @RequestMapping("banner")
-public class BannerController {
+public class BannerController extends BaseController {
     @Autowired
     private BannerMapper mapper;
 

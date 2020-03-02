@@ -27,4 +27,6 @@ public interface ProjectMapper {
      * @return 返回查询结果
      */
     List<Project> selectByParam(Map<String,String> map);
+
+    Project selectAllByPrimaryKey(Integer id);
 }

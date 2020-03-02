@@ -271,7 +271,13 @@ export default {
         })
         .then(resp => {
           if (resp.data.code == "12138") {
+            sessionStorage.setItem("userId",resp.data.data.id);
+            sessionStorage.setItem("userNickname",resp.data.data.nickname);
+            sessionStorage.setItem("userImg",resp.data.data.img);
+            sessionStorage.setItem("isLogined",true);
             self.$router.replace("/");
+          }else{
+            this.changecode();
           }
           console.log(JSON.stringify(resp.data));
         });

@@ -6,9 +6,10 @@
     <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
     <result column="img_text" jdbcType="VARCHAR" property="imgText" />
     <result column="img_order" jdbcType="INTEGER" property="imgOrder" />
+    <result column="project_id" jdbcType="INTEGER" property="projectId"/>
   </resultMap>
   <sql id="Base_Column_List">
-    id, img_url, img_text, img_order
+    id, img_url, img_text, img_order, project_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.junenatte.imooc.bean.ProjectImgs">
     insert into project_imgs (id, img_url, img_text, 
-      img_order)
+      img_order, project_id)
     values (#{id,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}, #{imgText,jdbcType=VARCHAR}, 
-      #{imgOrder,jdbcType=INTEGER})
+      #{imgOrder,jdbcType=INTEGER}, #{projectId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.junenatte.imooc.bean.ProjectImgs">
     insert into project_imgs
@@ -41,6 +42,9 @@
       <if test="imgOrder != null">
         img_order,
       </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -54,6 +58,9 @@
       </if>
       <if test="imgOrder != null">
         #{imgOrder,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -69,6 +76,9 @@
       <if test="imgOrder != null">
         img_order = #{imgOrder,jdbcType=INTEGER},
       </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -76,7 +86,8 @@
     update project_imgs
     set img_url = #{imgUrl,jdbcType=VARCHAR},
       img_text = #{imgText,jdbcType=VARCHAR},
-      img_order = #{imgOrder,jdbcType=INTEGER}
+      img_order = #{imgOrder,jdbcType=INTEGER},
+      project_id = #{projectId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

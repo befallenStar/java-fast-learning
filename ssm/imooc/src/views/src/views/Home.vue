@@ -16,7 +16,7 @@
           <div class="g-banner-box">
             <swiper :options="swiperOption" class="mouse-hover">
               <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
-                <img :src="swiperPath+slide.imgpath" height="382px" :title="slide.imgtext" />
+                <img :src="require('../assets/'+slide.imgpath+'.jpg')" height="382px" :title="slide.imgtext" />
               </swiper-slide>
               <div class="swiper-button-prev" slot="button-prev"></div>
               <div class="swiper-button-next" slot="button-next"></div>

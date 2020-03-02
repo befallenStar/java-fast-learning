@@ -21,7 +21,7 @@ public class ImoocUser implements Serializable {
     private String password;
 
     @ApiModelProperty(value = "用户昵称")
-    private String rickname;
+    private String nickname;
 
     @ApiModelProperty(value = "用户头像")
     private String img;
@@ -61,12 +61,12 @@ public class ImoocUser implements Serializable {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getRickname() {
-        return rickname;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setRickname(String rickname) {
-        this.rickname = rickname == null ? null : rickname.trim();
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
     }
 
     public String getImg() {
