@@ -2,6 +2,8 @@ package com.junenatte.imooc.dao;
 
 import com.junenatte.imooc.bean.ProjectMaterialType;
 
+import java.util.List;
+
 public interface ProjectMaterialTypeMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface ProjectMaterialTypeMapper {
     int updateByPrimaryKeySelective(ProjectMaterialType record);
 
     int updateByPrimaryKey(ProjectMaterialType record);
+
+    List<ProjectMaterialType> selectAll();
 }

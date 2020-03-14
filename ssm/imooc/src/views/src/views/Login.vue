@@ -1,16 +1,13 @@
 <template>
   <div class="login">
-    <div id="head" class="sig-head">
-      <a href="/" target="_self" class="sig-img">码雀网</a>
-    </div>
     <div class="login_main">
       <div class="login_warp">
         <!-- 登录表单 -->
-        <div id="signin" class="rl-modal" v-if="islogin">
+        <div id="signin" class="rl-modal" v-if="isLogin">
           <div class="rl-modal-header">
             <h1>
               <span class="active-title">登录</span>
-              <span data-fromto="signin:signup" class="xa-showSignup" @click="islogin=false">注册</span>
+              <span data-fromto="signin:signup" class="xa-showSignup" @click="shift()">注册</span>
             </h1>
           </div>
           <div class="rl-modal-body js-loginWrap">
@@ -26,7 +23,10 @@
                     class="xa-emailOrPhone ipt ipt-email js-own-name"
                     placeholder="请输入登录手机号"
                   />
-                  <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的手机号"></p>
+                  <p
+                    class="rlf-tip-wrap errorHint color-red"
+                    data-error-hint="请输入正确的手机号"
+                  >{{phoneErr}}</p>
                 </div>
                 <div class="rlf-group pr">
                   <a
@@ -49,7 +49,7 @@
                   <p
                     class="rlf-tip-wrap errorHint color-red"
                     data-error-hint="请输入6-16位密码,区分大小写,不能用空格"
-                  ></p>
+                  >{{passwordErr}}</p>
                 </div>
 
                 <div class="rlf-group clearfix form-control js-verify-row" style="display: block;">
@@ -62,7 +62,7 @@
                     maxlength="4"
                     data-minlength="4"
                     placeholder="请输入验证码"
-                    v-model="loginCode"
+                    v-model="imgCode"
                   />
                   <a
                     href="javascript:void(0)"
@@ -71,7 +71,10 @@
                   >
                     <img class="verify-img" :src="img_code_url" @click="changecode" />
                   </a>
-                  <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确验证码"></p>
+                  <p
+                    class="rlf-tip-wrap errorHint color-red"
+                    data-error-hint="请输入正确验证码"
+                  >{{imgCodeErr}}</p>
                 </div>
                 <div class="rlf-group rlf-appendix form-control clearfix">
                   <div class="rlf-line r"></div>
@@ -118,10 +121,10 @@
         </div>
         <!-- 登录表单结束 -->
         <!-- 注册表单 -->
-        <div id="signup" class="rl-modal rl-model-signup" v-if="!islogin">
+        <div id="signup" class="rl-modal rl-model-signup" v-if="!isLogin">
           <div class="rl-modal-header">
             <h1>
-              <span data-fromto="signup:signin" class="xa-showSignin" @click="islogin=true">登录</span>
+              <span data-fromto="signup:signin" class="xa-showSignin" @click="shift()">登录</span>
               <span class="active-title">注册</span>
             </h1>
           </div>
@@ -132,21 +135,42 @@
                   type="text"
                   maxlength="37"
                   v-model="phone"
-                  name="email"
+                  name="phone"
                   data-callback="checkusername"
                   data-validate="require-mobile-phone"
                   autocomplete="off"
                   class="ipt ipt-phone"
                   placeholder="请输入注册手机号"
                 />
-                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的手机号"></p>
+                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的手机号">{{phoneErr}}</p>
+                <input
+                  type="text"
+                  maxlength="37"
+                  v-model="nickname"
+                  name="nickname"
+                  data-callback="checkusername"
+                  autocomplete="off"
+                  class="ipt ipt-phone"
+                  placeholder="请输入你的昵称"
+                />
+                <p
+                  class="rlf-tip-wrap errorHint color-red"
+                  data-error-hint="请输入你的昵称"
+                >{{nicknameErr}}</p>
+              </div>
+              <div
+                class="rlf-group clearfix form-control"
+                style="padding-left:14px;padding-bottom:20px"
+              >
+                <el-radio v-model="sex" label="男">男</el-radio>
+                <el-radio v-model="sex" label="女">女</el-radio>
               </div>
               <div class="rlf-group clearfix form-control">
                 <input
                   type="text"
                   maxlength="37"
                   v-model="msgCode"
-                  name="email"
+                  name="msgCode"
                   data-callback="checkusername"
                   data-validate="require-mobile-phone"
                   autocomplete="off"
@@ -157,13 +181,18 @@
                   href="javascript:void(0)"
                   hidefocus="true"
                   class="verify-msg-wrap js-verify-refresh"
-                >获取验证码</a>
-                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的验证码"></p>
+                >
+                  <div class="verify-msg" @click="getMsgCode">{{msgCodeSend}}</div>
+                </a>
+                <p
+                  class="rlf-tip-wrap errorHint color-red"
+                  data-error-hint="请输入正确的验证码"
+                >{{msgCodeErr}}</p>
               </div>
               <div class="rlf-group clearfix form-control">
                 <input
                   type="text"
-                  v-model="loginCode"
+                  v-model="imgCode"
                   name="verify"
                   class="ipt ipt-verify js-emailverify l"
                   data-validate="require-string"
@@ -185,7 +214,7 @@
                   hidefocus="true"
                   class="icon-refresh js-verify-refresh"
                 ></a>
-                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="验证码错误"></p>
+                <p class="rlf-tip-wrap errorHint color-red" data-error-hint="验证码错误">{{imgCodeErr}}</p>
               </div>
               <div class="rlf-group rlf-appendix form-control clearfix" style="margin-bottom:0">
                 <label for="signup-protocol" class="rlf-autoin l" hidefocus="true">
@@ -213,6 +242,7 @@
                   id="signup-btn"
                   hidefocus="true"
                   class="moco-btn moco-btn-red moco-btn-lg btn-full btn r"
+                  @click="signup"
                 >注册</a>
               </div>
             </form>
@@ -243,44 +273,190 @@
 export default {
   data() {
     return {
-      islogin: true,
+      nickname: "",
+      nicknameErr: "",
+      sex: "男",
+      isLogin: true,
       showpwd: false,
-      phone: "15651002285",
-      password: "123123",
-      loginCode: "",
-      msgCode:"",
+      phone: "", //15651002285
+      phoneErr: "",
+      password: "", //123123
+      passwordErr: "",
+      imgCode: "",
+      msgCode: "",
+      msgCodeSendFlag: true,
+      msgCodeSend: "获取验证码",
+      msgCodeErr: "",
+      imgCodeErr: "",
       img_code_url: this.$store.state.server_baseurl + "/code"
     };
   },
   created() {
+    if (this.$route.query.isLogin) this.isLogin = false;
     this.changecode();
   },
   methods: {
+    getMsgCode() {
+      if (this.msgCodeSendFlag) {
+        this.phoneErr = "";
+        if (!/^1(3|4|5|6|7|8|9)\d{9}$/.test(this.phone)) {
+          this.phoneErr = "请输入正确的手机号";
+          return false;
+        }
+        this.axios
+          .get("/message/" + this.phone)
+          .then(res => {
+            console.log(res.data);
+            if (0 == res.data.error_code) {
+              this.msgCodeInterval();
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    },
+    msgCodeInterval() {
+      let second = 60;
+      this.msgCodeSend = second + "s后重新获取";
+      let interval = setInterval(() => {
+        second--;
+        if (second < 0) {
+          this.msgCodeSend = "获取验证码";
+          this.msgCodeSendFlag = false;
+          window.clearInterval(interval);
+        } else {
+          this.msgCodeSendFlag = true;
+          this.msgCodeSend = second + "s后重新获取";
+        }
+      }, 1000);
+    },
+    signup() {
+      let flag = true;
+      this.phoneErr = "";
+      if (!/^1(3|4|5|6|7|8|9)\d{9}$/.test(this.phone)) {
+        this.phoneErr = "请输入正确的手机号";
+        flag = false;
+      } else {
+        flag = true;
+      }
+      this.msgCodeErr = "";
+      if (this.msgCode.length != 4) {
+        this.msgCodeErr = "请输入正确的验证码";
+        flag = false;
+      } else {
+        flag = true;
+      }
+      this.nicknameErr = "";
+      if (this.nickname.length == 0) {
+        this.nicknameErr = "请输入你的昵称";
+        flag = false;
+      } else {
+        flag = true;
+      }
+      this.imgCodeErr = "";
+      if (this.imgCode.length != 4) {
+        this.imgCodeErr = "请输入验证码";
+        flag = false;
+      } else {
+        flag = true;
+      }
+      if (flag) {
+        let self = this;
+        this.axios
+          .get("imooc_user/signup", {
+            phone: self.phone,
+            password: self.password,
+            nickname: self.nickname,
+            sex: self.sex,
+            imgCode: self.msgCode
+          })
+          .then(res => {
+            console.log(res);
+            if (res.data.code == "12138") {
+              self.$message({
+                message: "注册成功",
+                type: "success"
+              });
+              self.login();
+            } else {
+              self.$message.error(res.data.msg);
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    },
     changecode() {
       this.img_code_url =
         this.$store.state.server_baseurl + "/code" + "?time=" + new Date();
     },
     login() {
-      var self = this;
-      const url = "/imooc_user/login";
-      this.axios
-        .post(url, {
-          phone: this.phone,
-          password: this.password,
-          loginCode: this.loginCode
-        })
-        .then(resp => {
-          if (resp.data.code == "12138") {
-            sessionStorage.setItem("userId",resp.data.data.id);
-            sessionStorage.setItem("userNickname",resp.data.data.nickname);
-            sessionStorage.setItem("userImg",resp.data.data.img);
-            sessionStorage.setItem("isLogined",true);
-            self.$router.replace("/");
-          }else{
-            this.changecode();
-          }
-          console.log(JSON.stringify(resp.data));
-        });
+      let flag = true;
+      this.phoneErr = "";
+      if (!/^1(3|4|5|6|7|8|9)\d{9}$/.test(this.phone)) {
+        this.phoneErr = "请输入正确的手机号";
+        flag = false;
+      } else {
+        flag = true;
+      }
+      this.passwordErr = "";
+      if (!/^[\S]{6,16}$/.test(this.password)) {
+        this.passwordErr = "请输入6-16位密码,区分大小写,不能用空格";
+        flag = false;
+      } else {
+        flag = true;
+      }
+      this.msgCodeErr = "";
+      if (this.msgCode.length != 4) {
+        this.msgCodeErr = "请输入正确的验证码";
+        flag = false;
+      } else {
+        flag = true;
+      }
+      this.imgCodeErr = "";
+      if (this.imgCode.length != 4) {
+        this.imgCodeErr = "请输入验证码";
+        flag = false;
+      } else {
+        flag = true;
+      }
+      if (flag) {
+        var self = this;
+        const url = "/imooc_user/login";
+        this.axios
+          .post(url, {
+            phone: this.phone,
+            password: this.password,
+            imgCode: this.imgCode
+          })
+          .then(res => {
+            if (res.data.code == "12138") {
+              // this.$store.state.current_user = res.data.data;
+              this.$store.commit("saveUser", res.data.data);
+              self.$router.replace("/");
+            } else {
+              this.changecode();
+            }
+          });
+      }
+    },
+    shift() {
+      this.isLogin = !this.isLogin;
+      this.phone = "";
+      this.phoneErr = "";
+      this.password = "";
+      this.passwordErr = "";
+      this.nickname = "";
+      this.nicknameErr = "";
+      this.imgCode = "";
+      this.imgCodeErr = "";
+      this.msgCode = "";
+      this.msgCodeErr = "";
+      this.msgCodeSendFlag = true;
+      this.msgCodeSend = "获取验证码";
+      this.showpwd = false;
     }
   }
 };
@@ -319,7 +495,7 @@ export default {
   min-height: auto;
   padding: 20px 0;
   width: 384px;
-  margin: 0 auto;
+  margin: 80px auto;
 }
 
 .rl-modal {
@@ -332,7 +508,7 @@ export default {
   /* left: 50%;
     top: 50%; */
   /* margin: -192px 0 0 -192px; */
-  box-shadow: 0 12px 24px 0 rgba(28, 31, 33, 0.1);
+  box-shadow: 0 12px 24px 0 #9199a1;
   border-radius: 12px;
   transition: all 0.2s;
   -webkit-transition: all 0.2s;
@@ -370,7 +546,7 @@ export default {
 
 .rl-modal-header .active-title,
 .rl-modal-header span:hover {
-  color: #f20d0d;
+  color: teal;
 }
 .rl-modal-header .active-title:after,
 .rl-modal-header span:hover:after {
@@ -378,7 +554,7 @@ export default {
   width: 16px;
   height: 4px;
   line-height: 4px;
-  background: #f20d0d;
+  background: teal;
   border-radius: 2px;
   display: block;
   margin: 0 auto;
@@ -418,12 +594,13 @@ export default {
   height: 25px;
   line-height: 20px;
   font-size: 12px;
-  color: #f01414;
+  color: #977070;
 }
 .rlf-tip-wrap {
   font-size: 12px;
   height: 20px;
   clear: both;
+  padding-left: 14px;
 }
 .rl-modal .proclaim-btn {
   font-size: 23px;
@@ -467,6 +644,20 @@ export default {
   width: 84px;
   height: 32px;
   font-size: 16px;
+}
+.verify-msg-wrap .verify-msg {
+  border: 1px solid teal;
+  border-radius: 5px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  color: teal;
+  font-size: 12px;
+  width: 80px;
+}
+.verify-msg-wrap .verify-msg:hover {
+  background-color: teal;
+  color: #fff;
 }
 .verify-img-wrap {
   position: absolute;
@@ -529,8 +720,8 @@ export default {
   -moz-transition: all 0.3s;
   transition: all 0.3s;
   color: #fff;
-  background-color: #f20d0d;
-  border-color: #f20d0d;
+  background-color: teal;
+  border-color: teal;
   opacity: 1;
 }
 .moco-btn-lg {
@@ -557,7 +748,7 @@ export default {
   padding-right: 24px;
   display: inline-block;
   font-size: 14px;
-  color: #f20d0d;
+  color: teal;
   text-align: left;
   line-height: 24px;
   border-right: 1px solid #1a1c1f21;
@@ -573,11 +764,11 @@ export default {
 }
 .privacy_tip a {
   font-size: 12px;
-  color: #37f;
+  color: teal;
 }
 .privacy_tip a:visited {
   font-size: 12px;
-  color: #37f;
+  color: teal;
 }
 .vright {
   text-align: center;
@@ -625,7 +816,7 @@ export default {
 }
 
 .rlf-appendix .ipt-agreement {
-  color: #37f;
+  color: teal;
 }
 .rlf-tip-globle {
   font-size: 14px;

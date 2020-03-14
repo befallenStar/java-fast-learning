@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * @author 沈嘉豪
  */
-@Api(value = "图形验证码", tags = "图形验证码")
+@Api(value = "验证码", tags = "验证码")
 @Controller
 public class VerifyCodeController extends BaseController {
     /**

@@ -5,10 +5,11 @@
         <input
           type="text"
           class="search-form-ipt js-search-ipt l"
-          value="Vue"
+          v-model="keyword"
           placeholder="请输入想搜索的内容"
         />
-        <button class="search-form-btn js-search-btn r">搜索</button>
+        <el-button @click="search" type="primary" style="height:48px;background-color:teal;">搜索</el-button>
+        <el-checkbox v-model="ambiguous" style="margin-top:12px;">模糊搜索</el-checkbox>
         <div class="search-tips-area js-search-tips"></div>
       </div>
     </div>
@@ -19,121 +20,120 @@
             <!-- 全站结果，课程内容 -->
             <a href="/search/?words=Vue" class="active">
               全站结果
-              <span>（38）</span>
+              <span>（{{result.total}}）</span>
             </a>
           </div>
           <div class="tab_con">
             <!-- tab选项 -->
-            <a href="/search/?words=Vue" class="tab-item active">全部</a>
+            <!-- <a href="/search/?words=Vue" class="tab-item active">全部</a>
             <a href="/search/?type=course&amp;words=Vue" class="tab-item">项目</a>
             <a href="/search/?type=column&amp;words=Vue" class="tab-item">源码</a>
             <a href="/search/wenda?words=Vue" class="tab-item">视频</a>
-            <a href="/search/article?words=Vue" class="tab-item">文档</a>
-            <span>找到相关内容 38 个</span>
+            <a href="/search/article?words=Vue" class="tab-item">文档</a>-->
+            <span>找到相关内容 {{result.total}} 个</span>
           </div>
         </div>
         <div class="search-course-list">
-          <div class="search-item js-search-item clearfix">
-            <a
-              href="//coding.imooc.com/class/196.html"
-              target="_blank"
-              class="js-zhuge-allResult js-result-item item-img l"
-            >
-              <img src="//img2.sycdn.imooc.com/szimg/5aab7f270001909810800600-240-180.jpg" />
-
-              <p class="type">实战课程</p>
+          <div
+            class="search-item js-search-item clearfix"
+            v-for="(item,index) in result.list"
+            :key="index"
+          >
+            <a :href="'/detail?id='+item.id" class="js-zhuge-allResult js-result-item item-img l">
+              <img :src="$store.state.server_baseurl+item.projectCover" />
             </a>
             <div class="item-detail l">
               <a
-                href="//coding.imooc.com/class/196.html"
-                target="_blank"
+                :href="'/detail?id='+item.id"
                 class="js-zhuge-allResult item-title js-result-item js-item-title"
-              >
-                <span class="highlight">Vue</span>核心技术
-                <span class="highlight">Vue</span>+
-                <span class="highlight">Vue</span>-Router+Vuex+SSR实战精讲
-              </a>
-              <p class="item-desc">
-                应用开发，
-                <span class="highlight">Vue</span>+Webpack工作流搭建，
-                <span class="highlight">Vue</span>+
-                <span class="highlight">Vue</span>-Router+Vuex项目架构和
-                <span class="highlight">Vue</span>服务端渲染深度集成
-              </p>
+              >{{item.projectTitle}}</a>
+              <br />
+              <p
+                class="js-zhuge-allResult item-subtitle js-result-item js-item-subtitle"
+              >{{item.projectSubtitle}}</p>
+              <p class="item-desc">{{item.projectDesc}}</p>
               <div class="item-classify">
-                <span>
-                  讲师：
-                  <a target="_blank" href="/u/3083408">Jokcy</a>
-                </span>
-
-                <span>高级</span>
+                <span>{{item.projectKeywords}}</span>
                 <i class="imv2-set-sns"></i>
-                <span>2359</span>
-
-                <a href="javascript:;" class="js-free-pop" data-m="12371" data-c="196" title="课程导学">
-                  <i class="imv2-video_circle" style="cursor: pointer;"></i>
-                  <span style="cursor: pointer;">试看</span>
-                </a>
+                <span>浏览量：{{item.browseCount}}</span>
+                <span>下载量：{{item.downloadCount}}</span>
               </div>
             </div>
           </div>
         </div>
         <div class="page">
-          <span class="disabled_page">首页</span>
-          <span class="disabled_page">上一页</span>
-          <a href="javascript:void(0)" class="active text-page-tag">1</a>
-          <a class="text-page-tag" href="/search/?words=Vue&amp;page=2">2</a>
-          <a href="/search/?words=Vue&amp;page=2">下一页</a>
-          <a href="/search/?words=Vue&amp;page=2">尾页</a>
+          <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="result.total"
+            :page-size="result.pageSize"
+            :current-page="currentPage"
+            @current-change="currentChange"
+          ></el-pagination>
         </div>
       </div>
       <div class="search-recommend r">
         <div class="hot-search search-labels">
           <div class="title">热搜关键词</div>
           <div class="labels-con js-zhuge-searchHot">
-            <a href="javascript:;" class="label" data-link="/search/?words=Vue">Vue</a>
-            <a href="javascript:;" class="label" data-link="/search/?words=Python">Python</a>
-            <a href="javascript:;" class="label" data-link="/search/?words=Java">Java</a>
-            <a href="javascript:;" class="label" data-link="/search/?words=flutter">flutter</a>
-            <a href="javascript:;" class="label" data-link="/search/?words=springboot">springboot</a>
-            <a href="javascript:;" class="label" data-link="/search/?words=docker">docker</a>
-            <a href="javascript:;" class="label" data-link="/search/?words=React">React</a>
-            <a href="javascript:;" class="label" data-link="/search/?words=小程序">小程序</a>
+            <a href="/search?keyword=Vue" class="label">Vue</a>
+            <a href="/search?keyword=Python" class="label">Python</a>
+            <a href="/search?keyword=Java" class="label">Java</a>
+            <a href="/search?keyword=flutter" class="label">flutter</a>
+            <a href="/search?keyword=springboot" class="label">springboot</a>
+            <a href="/search?keyword=docker" class="label">docker</a>
+            <a href="/search?keyword=React" class="label">React</a>
+            <a href="/search?keyword=小程序" class="label">小程序</a>
           </div>
         </div>
         <div class="jiuyeban-recommend">
           <div class="title">金职位</div>
           <div class="direct-con js-zhuge-searchRecommend">
             <a class="direct" target="_blank" href="//class.imooc.com/sale/newfe">
-              <div class="img" :style="'background-image:url('+require('../assets/search/fe.png')+')'"></div>
+              <div
+                class="img"
+                :style="'background-image:url('+require('../assets/search/fe.png')+')'"
+              ></div>
               <div class="text">
                 <div>Web前端攻城狮</div>
                 <p>踏入IT行业从此开始</p>
               </div>
             </a>
             <a class="direct" target="_blank" href="//class.imooc.com/sale/newjava">
-              <div class="img" :style="'background-image:url('+require('../assets/search/java.png')+')'"></div>
+              <div
+                class="img"
+                :style="'background-image:url('+require('../assets/search/java.png')+')'"
+              ></div>
               <div class="text">
                 <div>Java攻城狮</div>
                 <p>全球3大编程语言之一</p>
               </div>
             </a>
             <a class="direct" target="_blank" href="//class.imooc.com/sale/newandroid">
-              <div class="img" :style="'background-image:url('+require('../assets/search/android.png')+')'"></div>
+              <div
+                class="img"
+                :style="'background-image:url('+require('../assets/search/android.png')+')'"
+              ></div>
               <div class="text">
                 <div>Android攻城狮</div>
                 <p>5G物联网通万物</p>
               </div>
             </a>
             <a class="direct" target="_blank" href="//class.imooc.com/sale/php">
-              <div class="img" :style="'background-image:url('+require('../assets/search/php.png')+')'"></div>
+              <div
+                class="img"
+                :style="'background-image:url('+require('../assets/search/php.png')+')'"
+              ></div>
               <div class="text">
                 <div>PHP攻城狮</div>
                 <p>打通前后端一步到位</p>
               </div>
             </a>
             <a class="direct" target="_blank" href="//class.imooc.com/sale/python">
-              <div class="img" :style="'background-image:url('+require('../assets/search/python.png')+')'"></div>
+              <div
+                class="img"
+                :style="'background-image:url('+require('../assets/search/python.png')+')'"
+              ></div>
               <div class="text">
                 <div>Python攻城狮</div>
                 <p>爬虫大数据抢占先机</p>
@@ -146,7 +146,45 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      keyword: "",
+      ambiguous: false,
+      size: 10,
+      result: "",
+      createUser: "",
+      currentPage: 1
+    };
+  },
+  created() {
+    this.keyword = this.$route.query.keyword;
+    this.search();
+  },
+  methods: {
+    currentChange(val) {
+      this.currentPage = val;
+      this.search();
+    },
+    search() {
+      let self = this;
+      let param = {
+        keyword: this.keyword,
+        index: this.currentPage,
+        size: this.size
+      };
+      if (this.ambiguous) param.param = this.keyword;
+      this.axios
+        .get("/project/find", param)
+        .then(res => {
+          self.result = res.data.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }
+};
 </script>
 <style>
 .search-main {
@@ -157,7 +195,7 @@ export default {};
 }
 
 .search-main .search-header {
-  height: 88px;
+  height: 120px;
   width: 100%;
   padding-top: 24px;
   box-sizing: border-box;
@@ -187,22 +225,6 @@ export default {};
   box-sizing: border-box;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
-}
-
-.search-main .search-header .search-form .search-form-btn {
-  background: #f01414;
-  width: 104px;
-  height: 48px;
-  line-height: 48px;
-  font-size: 16px;
-  color: #fff;
-  cursor: pointer;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
 }
 
 .search-main .search-body {
@@ -239,7 +261,7 @@ export default {};
   .search-classify
   .all_content
   a.active {
-  color: #f20d0d;
+  color: teal;
 }
 .search-main .search-body .search-content .search-classify .all_content a span {
   font-size: 12px;
@@ -280,8 +302,8 @@ export default {};
   .search-classify
   .tab_con
   .tab-item.active {
-  border: 1px solid #f20d0d;
-  color: #f20d0d;
+  border: 1px solid teal;
+  color: teal;
 }
 
 .search-main
@@ -290,7 +312,7 @@ export default {};
   .search-classify
   .tab_con
   .tab-item:hover {
-  color: #f20d0d;
+  color: teal;
 }
 
 .search-course-list {
@@ -304,11 +326,10 @@ export default {};
 }
 
 .search-item {
-  width: 736px;
-  margin: 0 auto;
+  width: 800px;
+  margin-left: 0;
   background: #fff;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding: 16px 32px;
   box-sizing: border-box;
   position: relative;
   border-bottom: 1px solid rgba(43, 51, 59, 0.1);
@@ -316,16 +337,16 @@ export default {};
 }
 .search-item .item-img {
   display: inline-block;
-  width: 120px;
-  height: 90px;
+  width: 160px;
+  height: 120px;
   margin-right: 32px;
   border-radius: 4px;
   position: relative;
   overflow: hidden;
 }
 .search-item .item-img img {
-  width: 120px;
-  height: 90px;
+  width: 160px;
+  height: 120px;
   border-radius: 4px;
 }
 
@@ -343,12 +364,24 @@ export default {};
   border-radius: 0 0 4px 0;
 }
 .search-item .item-detail {
-  width: 584px;
+  width: 484px;
 }
 .search-item .item-detail .item-title {
   font-size: 16px;
   line-height: 32px;
   font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  color: #1c1f21;
+}
+.search-item .item-detail .item-title:hover {
+  color: teal;
+}
+.search-item .item-detail .item-subtitle {
+  font-size: 14px;
+  line-height: 28px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -441,85 +474,114 @@ export default {};
   color: #fff;
 }
 .search-main .search-body .search-recommend {
-    width: 320px;
+  width: 320px;
 }
 .search-main .search-body .search-recommend .search-labels {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 .search-main .search-body .search-recommend .search-labels .title {
-    margin-bottom: 12px;
-    font-size: 16px;
-    font-weight: 700;
-    color: #07111b;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #07111b;
 }
 .search-main .search-body .search-recommend .search-labels .labels-con {
-    display: -webkit-flex;
-    display: flex;
-    flex-wrap: wrap;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .search-main .search-body .search-recommend .search-labels .labels-con .label {
-    margin-right: 8px;
-    margin-bottom: 8px;
-    padding: 4px 8px;
-    font-size: 12px;
-    color: #646b71;
-    line-height: 16px;
-    background: #fff;
-    border-radius: 12px;
-    transition: all .3s;
-    -moz-transition: all .3s;
-    -webkit-transition: all .3s;
-    -o-transition: all .3s;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #646b71;
+  line-height: 16px;
+  background: #fff;
+  border-radius: 12px;
+  transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
 }
-.search-main .search-body .search-recommend .search-labels .labels-con .label:hover {
-    color: #f01414;
+.search-main
+  .search-body
+  .search-recommend
+  .search-labels
+  .labels-con
+  .label:hover {
+  color: teal;
 }
 .search-main .search-body .search-recommend .jiuyeban-recommend {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 .search-main .search-body .search-recommend .jiuyeban-recommend .title {
-    margin-bottom: 12px;
-    font-size: 16px;
-    font-weight: 700;
-    color: #07111b;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #07111b;
 }
 .search-main .search-body .search-recommend .jiuyeban-recommend .direct-con {
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 }
-.search-main .search-body .search-recommend .jiuyeban-recommend .direct-con .direct {
-    display: -webkit-flex;
-    display: flex;
-    cursor: pointer;
-    margin-bottom: 12px;
-    height: 88px;
-    box-sizing: border-box;
-    padding: 19px 20px;
-    background: #fff;
-    border-radius: 8px;
-    transition: all .3s;
-    -moz-transition: all .3s;
-    -webkit-transition: all .3s;
-    -o-transition: all .3s;
-}
-
-.search-main .search-body .search-recommend .jiuyeban-recommend .direct-con .direct .img {
-    width: 50px;
-    height: 50px;
-    margin-right: 18px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-.search-main .search-body .search-recommend .jiuyeban-recommend .direct-con .direct .text div {
-    font-size: 16px;
-    color: #1c1f21;
-    font-weight: 700;
-    margin-bottom: 2px;
-}
-.search-main .search-body .search-recommend .jiuyeban-recommend .direct-con .direct .text p {
-    font-size: 12px;
-    color: #1c1f21;
+.search-main
+  .search-body
+  .search-recommend
+  .jiuyeban-recommend
+  .direct-con
+  .direct {
+  display: -webkit-flex;
+  display: flex;
+  cursor: pointer;
+  margin-bottom: 12px;
+  height: 88px;
+  box-sizing: border-box;
+  padding: 19px 20px;
+  background: #fff;
+  border-radius: 8px;
+  transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
 }
 
+.search-main
+  .search-body
+  .search-recommend
+  .jiuyeban-recommend
+  .direct-con
+  .direct
+  .img {
+  width: 50px;
+  height: 50px;
+  margin-right: 18px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.search-main
+  .search-body
+  .search-recommend
+  .jiuyeban-recommend
+  .direct-con
+  .direct
+  .text
+  div {
+  font-size: 16px;
+  color: #1c1f21;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.search-main
+  .search-body
+  .search-recommend
+  .jiuyeban-recommend
+  .direct-con
+  .direct
+  .text
+  p {
+  font-size: 12px;
+  color: #1c1f21;
+}
 </style>

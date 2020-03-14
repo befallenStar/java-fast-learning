@@ -1,0 +1,12 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: config-center8001
+  cloud:
+    nacos:
+      config:
+        namespace: e59d4b11-e738-41c1-a38c-f909504e5dff
+        group: DEFAULT_GROUP
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml

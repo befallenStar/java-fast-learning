@@ -7,6 +7,16 @@ public class ProjectMaterialType implements Serializable {
 
     private String typeName;
 
+    public String getTypeSuffix() {
+        return typeSuffix;
+    }
+
+    public void setTypeSuffix(String typeSuffix) {
+        this.typeSuffix = typeSuffix;
+    }
+
+    private String typeSuffix;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {

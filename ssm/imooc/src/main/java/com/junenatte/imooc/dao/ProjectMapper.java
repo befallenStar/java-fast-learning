@@ -18,6 +18,8 @@ public interface ProjectMapper {
 
     int updateByPrimaryKey(Project record);
 
+    List<Project> selectByUserId(Integer userId);
+
     /**
      * 根据条件查询
      * @param map "keyword" : 关键字模糊查询

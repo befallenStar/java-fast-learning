@@ -16,7 +16,11 @@
           <div class="g-banner-box">
             <swiper :options="swiperOption" class="mouse-hover">
               <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
-                <img :src="require('../assets/'+slide.imgpath+'.jpg')" height="382px" :title="slide.imgtext" />
+                <img
+                  :src="$store.state.server_baseurl+slide.imgpath"
+                  height="382px"
+                  :title="slide.imgtext"
+                />
               </swiper-slide>
               <div class="swiper-button-prev" slot="button-prev"></div>
               <div class="swiper-button-next" slot="button-next"></div>
@@ -90,35 +94,26 @@
             :key="index"
             class="index-card-container course-card-container container"
           >
-            <a target="_blank" class="course-card" href>
-              <div class="course-stat new">新课</div>
-              <div class="course-card-top hashadow">
-                <img class="course-banner" :src="item.img" />
-                <div class="course-label">
-                  <label v-for="(item1,index1) in item.tags" :key="index1+100">{{item1}}</label>
-                </div>
+            <div class="course-card-top hashadow">
+              <img class="course-banner" :src="$store.state.server_baseurl+item.projectCover" />
+              <div class="course-label">
+                <label
+                  v-for="(item1,index1) in item.projectKeywords.split(',')"
+                  :key="index1"
+                >{{item1}}</label>
               </div>
-              <div class="course-card-content">
-                <h3 class="course-card-name">{{item.title}}</h3>
-                <div class="clearfix course-card-bottom">
-                  <div class="course-card-info">
-                    <span>中级</span>
-                    <span>
-                      <i class="imv2-set-sns"></i>
-                      {{item.downs}}
-                    </span>
-                    <span class="r js-hover-evaluation">14人评价</span>
-                  </div>
-                  <div class="course-card-price sales" data-costprice="266.00">
-                    ￥{{item.price}}
-                    <span class="sales-tip">
-                      限时优惠
-                      <i class="sales-timer js-sales-end-timer" data-timer="1314054"></i>
-                    </span>
-                  </div>
+            </div>
+            <div class="course-card-content">
+              <h3 class="course-card-name">
+                <a :href="'/detail?id='+item.id">{{item.projectTitle}}</a>
+              </h3>
+              <div class="clearfix course-card-bottom">
+                <div class="course-card-info">
+                  <span class="r js-hover-evaluation">{{item.browseCount}}人次浏览</span>
                 </div>
+                <div class="course-card-price sales">￥{{item.projectPrice}}</div>
               </div>
-            </a>
+            </div>
           </div>
         </div>
       </div>
@@ -186,67 +181,10 @@ export default {
         loop: true
       },
       swiperSlides: [],
-      projects_hot: [
-        {
-          img: require("../assets/home/project/1.jpg"),
-          title: "TypeScript 系统入门到项目实战 趁早学习提高职场竞争力",
-          desc: "TypeScript 系统入门到项目实战 趁早学习提高职场竞争力",
-          tags: ["Java", "Spring", "Mybatis"],
-          price: 226.0,
-          downs: 114
-        },
-        {
-          img: require("../assets/home/project/2.jpg"),
-          title: "TypeScript 系统入门到项目实战 趁早学习提高职场竞争力",
-          tags: ["Java", "Spring", "Mybatis"],
-          price: 226.0,
-          downs: 114
-        },
-        {
-          img: require("../assets/home/project/3.jpg"),
-          title: "TypeScript 系统入门到项目实战 趁早学习提高职场竞争力",
-          tags: ["Java", "Spring", "Mybatis"],
-          price: 226.0,
-          downs: 114
-        },
-        {
-          img: require("../assets/home/project/4.jpg"),
-          title: "TypeScript 系统入门到项目实战 趁早学习提高职场竞争力",
-          tags: ["Java", "Spring", "Mybatis"],
-          price: 226.0,
-          downs: 114
-        }
-      ],
+      projects_hot: [],
       projects_new: [
         {
           img: require("../assets/home/project/11.jpg"),
-          title: "TypeScript 系统入门到项目实战 ",
-          desc:
-            "TypeScript 系统入门到项目实战 趁早学习提高职场竞争力趁早学习提高职场竞争力",
-          tags: ["Java", "Spring", "Mybatis"],
-          price: 226.0,
-          downs: 114
-        },
-        {
-          img: require("../assets/home/project/22.png"),
-          title: "TypeScript 系统入门到项目实战 ",
-          desc:
-            "TypeScript 系统入门到项目实战 趁早学习提高职场竞争力趁早学习提高职场竞争力",
-          tags: ["Java", "Spring", "Mybatis"],
-          price: 226.0,
-          downs: 114
-        },
-        {
-          img: require("../assets/home/project/33.jpg"),
-          title: "TypeScript 系统入门到项目实战 ",
-          desc:
-            "TypeScript 系统入门到项目实战 趁早学习提高职场竞争力趁早学习提高职场竞争力",
-          tags: ["Java", "Spring", "Mybatis"],
-          price: 226.0,
-          downs: 114
-        },
-        {
-          img: require("../assets/home/project/1.jpg"),
           title: "TypeScript 系统入门到项目实战 ",
           desc:
             "TypeScript 系统入门到项目实战 趁早学习提高职场竞争力趁早学习提高职场竞争力",
@@ -258,7 +196,6 @@ export default {
     };
   },
   created() {
-    // console.log(window.location);
     this.loadPage();
   },
   methods: {
@@ -276,6 +213,14 @@ export default {
         .get("/banner/findall")
         .then(res => {
           self.swiperSlides = res.data.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      this.axios
+        .get("/project/find", { index: 1, size: 4 })
+        .then(res => {
+          self.projects_hot = res.data.data.list;
         })
         .catch(error => {
           console.log(error);
@@ -447,9 +392,9 @@ export default {
   font-weight: 400;
 }
 .menuContent .item {
-  height: 50px;
-  line-height: 50px;
-  font-size: 12px;
+  height: 55px;
+  line-height: 55px;
+  font-size: 14px;
   cursor: pointer;
   padding-left: 12px;
   position: relative;
@@ -636,8 +581,15 @@ label {
   -webkit-box-orient: vertical;
   transition: all 0.3s;
   font-weight: bold;
-  height: 46px;
+  height: 32px;
 }
+.course-card-container .course-card-content .course-card-name a {
+  color: black;
+}
+.course-card-container .course-card-content .course-card-name a:hover {
+  color: teal;
+}
+
 .course-card-container .course-card-content .course-card-bottom {
   position: relative;
 }
@@ -670,7 +622,7 @@ label {
   display: inline-block;
 }
 .course-card-container:hover .course-card-name {
-  color: #f20d0d !important;
+  color: teal !important;
 }
 
 .container-path .types-content {
@@ -766,7 +718,7 @@ label {
 }
 
 .container-path .types-content .course-path-container:hover h4 {
-  color: #f20d0d;
+  color: teal;
 }
 .container-path
   .types-content

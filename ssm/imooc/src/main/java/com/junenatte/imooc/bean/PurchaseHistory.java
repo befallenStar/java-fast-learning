@@ -14,8 +14,6 @@ public class PurchaseHistory implements Serializable {
 
     private Date purchaseTime;
 
-    private String purchaseType;
-
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -56,13 +54,5 @@ public class PurchaseHistory implements Serializable {
 
     public void setPurchaseTime(Date purchaseTime) {
         this.purchaseTime = purchaseTime;
-    }
-
-    public String getPurchaseType() {
-        return purchaseType;
-    }
-
-    public void setPurchaseType(String purchaseType) {
-        this.purchaseType = purchaseType == null ? null : purchaseType.trim();
     }
 }

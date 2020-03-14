@@ -1,5 +1,5 @@
 <template>
-  <div class="header-conatiner">
+  <div class="header-container">
     <div class="logo">
       <a href="http://www.diecolor.com">
         <img :src="logo" alt="码雀网" />
@@ -33,16 +33,17 @@
           placeholder="请输入关键字..."
           type="text"
           autocomplete="off"
+          v-model="keyword"
         />
         <div class="hotTags" style="display: block;">
-          <a href target="_blank" class>Vue</a>
-          <a href target="_blank" class="last">Python</a>
+          <a href="/search?keyword=Vue" class>Vue</a>
+          <a href="/search?keyword=Python" class="last">Python</a>
         </div>
-        <div class="search-area-result nav-search-box js-search-wrap" v-show="onfous">
+        <!-- <div class="search-area-result nav-search-box js-search-wrap" v-show="onfous">
           <div class="hot">
             <h2>热搜</h2>
             <div class="hot-box">
-              <a href="javascript:void(0)" class="hot-item js-history-search">Vue</a>
+              <a href="/search" @click.stop="change(false)" class="hot-item js-history-search">Vue</a>
               <a href="javascript:void(0)" class="hot-item js-history-search">Python</a>
               <a href="javascript:void(0)" class="hot-item js-history-search">Java</a>
               <a href="javascript:void(0)" class="hot-item js-history-search">flutter</a>
@@ -55,75 +56,83 @@
           <div class="history" style="display: none;">
             <ul data-suggest-result="suggest-result"></ul>
           </div>
-        </div>
+        </div>-->
       </div>
-      <div class="showhide-search" data-show="no">
+      <a class="showhide-search" data-show="no" :href="'/search?keyword='+keyword">
         <i class="el-icon-search"></i>
-      </div>
+      </a>
     </div>
     <!-- 搜索框END -->
     <!-- 登录信息 -->
     <div class="login-area">
       <ul class="isLogined">
-        <li class="shop-cart" v-if="!isLogined">
-          <a href class="shop-cart-icon" @mouseover="showcart(true)" @mouseout="showcart(false)">
+        <li class="shop-cart" v-if="isLogined">
+          <a
+            href="/cart"
+            class="shop-cart-icon"
+            @mouseover="showcart(true)"
+            @mouseout="showcart(false)"
+          >
             <i class="el-icon-shopping-cart-1"></i>
             购物车
-            <el-badge class="mark" :value="7" />
+            <el-badge class="mark" :value="projects.length" />
           </a>
           <div class="my-cart" v-show="iscart" @mouseover="oncartcard" @mouseout="outcartcard">
             <div class="cart-title-box clearfix">
               <h2 class="l">我的购物车</h2>
               <h5 class="r">
                 已加入
-                <span class="js-incart-num">0</span>门课程
+                <span class="js-incart-num">{{projects.length}}</span>门课程
               </h5>
             </div>
             <div class="cart-wrap">
-              <div class="cart-wrap-box" id="js-card-ul">
+              <div class="cart-wrap-box" id="js-card-ul" v-if="projects.length>0">
                 <ul>
-                  <li class="clearfix js-item" data-type="1" data-typeid="362" data-goodsid="1633">
-                    <a href="//coding.imooc.com/class/362.html">
+                  <li class="clearfix js-item" v-for="(item,index) in projects" :key="index">
+                    <a :href="'/project/detail?id='+item.project_id">
                       <img
                         class="l"
-                        src="//szimg.mukewang.com/5d4ceaef09c3cb6612000676-160-90.jpg"
-                        alt="线程八大核心+Java并发底层原理精讲"
+                        :src="$store.state.server_baseurl+item.project_cover"
+                        :alt="item.project_title"
                       />
                     </a>
                     <div class="content-box l">
-                      <a href="//coding.imooc.com/class/362.html" target="_blank">
-                        <h3>线程八大核心+Java并发底层原理精讲</h3>
+                      <a :href="'/project/detail?id='+item.project_id">
+                        <h3>{{item.project_title}}</h3>
                       </a>
                       <p class="clearfix">
-                        <span class="price l">￥348</span>
-                        <span class="del r js-close">删除</span>
+                        <span class="price l">￥{{item.project_price}}</span>
+
+                        <span class="del r js-close" @click="deletePorject(item.project_id)">删除</span>
                       </p>
                     </div>
                   </li>
                 </ul>
               </div>
-
-              <div class="clear-cart">
+              <div class="clear-cart" v-else>
                 <span class="cartIcon icon-shopping-cart"></span>
                 <h3>购物车里空空如也</h3>
-                <div class="text">快去这里选购你中意的项目</div>
+                <div class="text">
+                  快去
+                  <a href="/search">这里</a> 选购你中意的项目
+                </div>
               </div>
             </div>
-            <div class="more-box clearfix">
+            <!-- <div class="more-box clearfix">
               <div class="l show-box">
                 <span class="text">
                   <a href target="_blank">我的订单中心</a>
                 </span>
               </div>
               <a href target="_blank" class="r moco-btn moco-btn-red go-cart">去购物车</a>
-            </div>
+            </div>-->
           </div>
         </li>
         <!-- 未登录 -->
         <li class="header-signin" v-if="!isLogined">
-          <a href="/login" id="js-signin-btn">登录</a>
+          <router-link to="/login" id="js-signin-btn">登录</router-link>/
+          <router-link to="/login?islogin=1" id="js-signin-btn">注册</router-link>
         </li>
-        <!-- 购物车END -->
         <!-- 头像 -->
         <li class="set_btn user-card-box" id="header-user-card" v-if="isLogined">
           <a
@@ -132,49 +141,55 @@
             @mouseout="showuser(false)"
             class="user-card-item js-header-avator"
             action-type="my_menu"
-            href="https://www.imooc.com/u/index/allcourses"
+            href="/mine?activaName=my"
             target="_self"
           >
-            <img width="40" height="40" src="../assets/user_default.jpg" />
-            <i class="myspace_remind" style="display: none;"></i>
-            <span style="display: none;">动态提醒</span>
+            <img
+              width="40"
+              height="40"
+              :src="$store.state.server_baseurl+current_user.img"
+              :alt="current_user.nickname"
+            />
           </a>
           <div class="g-user-card" v-if="isuser" @mouseover="onusercard" @mouseout="outusercard">
             <div class="card-inner">
               <div class="card-top clearfix">
-                <a class="l" href="https://www.imooc.com/u/index/allcourses">
-                  <img :src="require('../assets/'+userImg+'.jpg')" :alt="nickname" />
+                <a class="l" href="/mine?activeName=my">
+                  <img
+                    :src="$store.state.server_baseurl+current_user.img"
+                    :alt="current_user.nickname"
+                  />
                 </a>
                 <div class="card-top-right-box l">
-                  <a href="https://www.imooc.com/u/index/allcourses">
-                    <span class="name text-ellipsis">{{nickname}}</span>
+                  <a href="/mine?activeName=first">
+                    <span class="name text-ellipsis">{{current_user.nickname}}</span>
                   </a>
                 </div>
               </div>
               <div class="user-center-box">
                 <ul class="clearfix">
                   <li class="l">
-                    <a href target="_blank">
+                    <a href="/mine?activeName=my">
                       <i class="el-icon-s-platform"></i>
                       我的项目
                     </a>
                   </li>
                   <li class="l">
-                    <a href target="_blank">
+                    <a href="/cart">
                       <i class="el-icon-s-goods"></i>
-                      订单中心
+                      购物车
                     </a>
                   </li>
                   <li class="l">
-                    <a href="/" target="_blank">
+                    <a href="/mine?activeName=purchase_history">
                       <i class="el-icon-s-finance"></i>
-                      我的钱包
+                      购买记录
                     </a>
                   </li>
                   <li class="l">
-                    <a href="/" target="_blank">
-                      <i class="el-icon-s-tools"></i>
-                      个人设置
+                    <a href="/mine?activeName=download_history">
+                      <i class="el-icon-download"></i>
+                      下载记录
                     </a>
                   </li>
                 </ul>
@@ -213,18 +228,69 @@ export default {
       onuser: false,
       t3: {},
       t4: {},
-      nickname:"",
-      userImg:"",
-      isLogined: false
+      isLogined: false,
+      keyword: ""
     };
   },
-  created(){
-    this.nickname=sessionStorage.getItem("userNickname");
-    this.userImg=sessionStorage.getItem("userImg");
-    this.isLogined=sessionStorage.getItem("isLogined");
-    console.log(sessionStorage);
+  created() {
+    this.getSessionUser();
+    this.loadProjects();
+  },
+  computed: {
+    current_user() {
+      return this.$store.state.current_user;
+    },
+    projects() {
+      return this.$store.state.projects;
+    }
   },
   methods: {
+    search() {},
+    deletePorject(projectId) {
+      this.axios
+        .get("/shopping_cart/delete/" + projectId)
+        .then(res => {
+          console.log(res.data);
+          if ("12138" == res.data.code) {
+            this.$store.commit("saveProjects", res.data.data);
+            this.$message({
+              message: "删除成功",
+              type: "success"
+            });
+          } else {
+            this.$message.error(res.data.msg);
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    loadProjects() {
+      if(this.current_user!=null){
+      this.axios
+        .get("/shopping_cart/my")
+        .then(res => {
+          console.log(res.data);
+          this.$store.commit("saveProjects", res.data.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      }
+    },
+    getSessionUser() {
+      this.axios
+        .get("/imooc_user/session")
+        .then(res => {
+          // this.$store.state.current_user = res.data.data;
+          // this.current_user = this.$store.state.current_user;
+          this.$store.commit("saveUser", res.data.data);
+          if (this.current_user) this.isLogined = true;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     change(flag) {
       this.onfous = flag;
     },
@@ -280,9 +346,22 @@ export default {
         this.isuser = false;
       }, 300);
     },
-    logout(){
-      sessionStorage.clear();
-    },
+    logout() {
+      // this.$store.state.current_user = "";
+      // this.$store.commit("saveUser", "");
+      this.axios
+        .get("/imooc_user/loginOut")
+        .then(res => {
+          this.$message({
+            message: "注销成功",
+            type: "success"
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      this.isLogined = false;
+    }
   },
   components: {}
 };
@@ -325,6 +404,14 @@ ul {
 a {
   text-decoration: none;
 }
+
+a,
+a:visited {
+  color: #07111b;
+}
+a:hover {
+  color: teal;
+}
 html,
 body {
   height: 100%;
@@ -352,7 +439,7 @@ body {
   z-index: 900;
   box-shadow: 0 4px 8px 0 rgba(7, 17, 27, 0.1);
 }
-.header-conatiner {
+.header-container {
   width: auto;
   padding-right: 10px;
   z-index: 900;
@@ -441,7 +528,7 @@ body {
   text-decoration: none;
 }
 .search-area .hotTags a:hover {
-  color: #f21f1f;
+  color: teal;
 }
 .search-area .search-area-result {
   /* position: absolute; */
@@ -553,7 +640,7 @@ body {
   text-align: center;
 }
 .login-area .shop-cart .shop-cart-icon:hover {
-  color: #f21f1f;
+  color: teal;
 }
 
 .login-area .shop-cart .my-cart {
@@ -634,7 +721,6 @@ body {
   height: 16px;
 }
 .shop-cart .my-cart .cart-wrap .cart-wrap-box ul li .content-box p span {
-  color: rgba(240, 20, 20, 0.6);
   font-size: 12px;
   line-height: 16px;
 }
@@ -804,7 +890,7 @@ body {
 }
 .nav-item li a:hover,
 .login-area .isLogined > li > a:hover {
-  color: #07111b !important;
+  color: teal !important;
 }
 .header-signin {
   padding: 0px 15px;
@@ -815,6 +901,6 @@ body {
   display: inline;
 }
 .login-area .isLogined .header-signin a:hover {
-  color: #f20d0d !important;
+  color: teal !important;
 }
 </style>

@@ -14,7 +14,7 @@ public class ProjectMaterial implements Serializable {
 
     private String materialIcon;
 
-    private Date createTime;
+    private Date materialCreateTime;
 
     private Integer projectId;
 
@@ -80,12 +80,12 @@ public class ProjectMaterial implements Serializable {
         this.materialIcon = materialIcon == null ? null : materialIcon.trim();
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getMaterialCreateTime() {
+        return materialCreateTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setMaterialCreateTime(Date materialCreateTime) {
+        this.materialCreateTime = materialCreateTime;
     }
 
     public Integer getProjectId() {

@@ -8,12 +8,12 @@
         <result column="material_path" jdbcType="VARCHAR" property="materialPath"/>
         <result column="material_suffix" jdbcType="VARCHAR" property="materialSuffix"/>
         <result column="material_icon" jdbcType="VARCHAR" property="materialIcon"/>
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="material_create_time" jdbcType="TIMESTAMP" property="materialCreateTime"/>
         <result column="project_id" jdbcType="INTEGER" property="projectId"/>
         <result column="type_id" javaType="INTEGER" property="typeId"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, material_title, material_path, material_suffix, material_icon, create_time, project_id, type_id
+    id, material_title, material_path, material_suffix, material_icon, material_create_time, project_id, type_id
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
@@ -27,13 +27,13 @@
   </delete>
     <insert id="insert" parameterType="com.junenatte.imooc.bean.ProjectMaterial">
     insert into project_material (id, material_title, material_path, 
-      material_suffix, material_icon, create_time, 
+      material_suffix, material_icon, material_create_time,
       project_id, type_id)
     values (#{id,jdbcType=INTEGER}, #{materialTitle,jdbcType=VARCHAR}, #{materialPath,jdbcType=VARCHAR}, 
-      #{materialSuffix,jdbcType=VARCHAR}, #{materialIcon,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{materialSuffix,jdbcType=VARCHAR}, #{materialIcon,jdbcType=VARCHAR}, #{materialCreateTime,jdbcType=TIMESTAMP},
       #{projectId,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER})
   </insert>
-    <insert id="insertSelective" parameterType="com.junenatte.imooc.bean.ProjectMaterial">
+    <insert id="insertSelective" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.junenatte.imooc.bean.ProjectMaterial">
         insert into project_material
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -52,7 +52,7 @@
                 material_icon,
             </if>
             <if test="createTime != null">
-                create_time,
+                material_create_time,
             </if>
             <if test="projectId != null">
                 project_id,
@@ -78,7 +78,7 @@
                 #{materialIcon,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
+                #{materialCreateTime,jdbcType=TIMESTAMP},
             </if>
             <if test="projectId != null">
                 #{projectId,jdbcType=INTEGER},
@@ -105,7 +105,7 @@
                 material_icon = #{materialIcon,jdbcType=VARCHAR},
             </if>
             <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
+                material_create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
             <if test="projectId != null">
                 project_id = #{projectId,jdbcType=INTEGER},
@@ -122,7 +122,7 @@
       material_path = #{materialPath,jdbcType=VARCHAR},
       material_suffix = #{materialSuffix,jdbcType=VARCHAR},
       material_icon = #{materialIcon,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
+      material_create_time = #{materialCreateTime,jdbcType=TIMESTAMP},
       project_id = #{projectId,jdbcType=INTEGER},
         type_id = #{typeId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}

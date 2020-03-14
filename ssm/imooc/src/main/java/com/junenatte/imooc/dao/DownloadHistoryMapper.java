@@ -2,6 +2,9 @@ package com.junenatte.imooc.dao;
 
 import com.junenatte.imooc.bean.DownloadHistory;
 
+import java.util.List;
+import java.util.Map;
+
 public interface DownloadHistoryMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +17,6 @@ public interface DownloadHistoryMapper {
     int updateByPrimaryKeySelective(DownloadHistory record);
 
     int updateByPrimaryKey(DownloadHistory record);
+
+    List<Map> selectByUserId(Integer userId);
 }

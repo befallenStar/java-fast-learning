@@ -38,17 +38,30 @@ public class ImoocUserController extends BaseController {
     @Autowired
     private ImoocUserMapper mapper;
 
-    @Value("${imooc.upload.path.headimg")
+    @Value("${imooc.upload.path.headimg}")
     private String headimgPath;
+
+    @ApiOperation(value = "查询session")
+    @GetMapping("session")
+    public ResultBean<ImoocUser> getSessionUser() {
+        ResultBean<ImoocUser> resultBean;
+        ImoocUser imoocUser = getCurrentImoocUser();
+        if (null == imoocUser) {
+            resultBean = new ResultBean<>(ResultBean.Code.failure, "还没有登录");
+        } else {
+            resultBean = new ResultBean<>(ResultBean.Code.success, "查询成功", imoocUser);
+        }
+        return resultBean;
+    }
 
     @ApiOperation(value = "用户登录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "phone", value = "手机号", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "password", value = "密码", dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "loginCode", value = "图形验证码", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "imgCode", value = "图形验证码", dataType = "String", paramType = "query"),
     })
     @PostMapping("login")
-    public ResultBean<ImoocUser> login(String phone, String password, String loginCode) {
+    public ResultBean<ImoocUser> login(String phone, String password, String imgCode) {
         ResultBean<ImoocUser> resultBean;
         try {
             String code = (String) session.getAttribute(SessionKeyUtil.CODE);
@@ -56,7 +69,7 @@ public class ImoocUserController extends BaseController {
                 resultBean = new ResultBean<>(ResultBean.Code.failure, "验证码已失效");
                 return resultBean;
             }
-            if (!loginCode.equalsIgnoreCase(code)) {
+            if (!imgCode.equalsIgnoreCase(code)) {
                 resultBean = new ResultBean<>(ResultBean.Code.failure, "验证码错误");
                 return resultBean;
             }
@@ -83,10 +96,11 @@ public class ImoocUserController extends BaseController {
             @ApiImplicitParam(name = "nickname", value = "昵称", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "phone", value = "手机号", dataType = "String", paramType = "query"),
             @ApiImplicitParam(name = "password", value = "密码", dataType = "String", paramType = "query"),
-            @ApiImplicitParam(name = "loginCode", value = "短信验证码", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "sex", value = "性别", dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "imgCode", value = "短信验证码", dataType = "String", paramType = "query"),
     })
     @PostMapping("signup")
-    public ResultBean<ImoocUser> signup(String nickname, String phone, String password, String loginCode) {
+    public ResultBean<ImoocUser> signup(String nickname, String phone, String password, String sex, String imgCode) {
         ResultBean<ImoocUser> resultBean;
         try {
             String code = (String) session.getAttribute(SessionKeyUtil.MSGCODE);
@@ -94,7 +108,7 @@ public class ImoocUserController extends BaseController {
                 resultBean = new ResultBean<>(ResultBean.Code.failure, "验证码已失效");
                 return resultBean;
             }
-            if (!loginCode.equalsIgnoreCase(code)) {
+            if (!imgCode.equalsIgnoreCase(code)) {
                 resultBean = new ResultBean<>(ResultBean.Code.failure, "验证码错误");
                 return resultBean;
             }
@@ -108,6 +122,7 @@ public class ImoocUserController extends BaseController {
                 imoocUser.setNickname(nickname);
                 imoocUser.setPhone(phone);
                 imoocUser.setPassword(password);
+                imoocUser.setSex(sex);
                 imoocUser.setImg("user_default");
                 imoocUser.setCreateTime(new Date());
                 imoocUser.setLastUpdate(new Date());
@@ -207,7 +222,7 @@ public class ImoocUserController extends BaseController {
                 }
                 String newName = UUID.randomUUID().toString() + suffix;
                 String imgSavePath = "/static/" + headimgPath;
-                String parentPath = ResourceUtils.getURL("classpath:").getPath() + imgSavePath;
+                String parentPath = ResourceUtils.getURL("classpath:").getPath()+ imgSavePath;
                 File dir = new File(parentPath);
                 if (!dir.exists()) {
                     dir.mkdir();
@@ -215,10 +230,11 @@ public class ImoocUserController extends BaseController {
                 File file = new File(dir, newName);
                 img.transferTo(file);
                 ImoocUser imoocUser = mapper.selectByPrimaryKey(getCurrentImoocUser().getId());
-                imoocUser.setImg(imgSavePath + newName);
+                imoocUser.setImg(headimgPath + newName);
                 imoocUser.setLastUpdate(new Date());
                 int rows = mapper.updateByPrimaryKeySelective(imoocUser);
                 if (rows > 0) {
+                    imoocUser.setPassword("");
                     resultBean = new ResultBean<>(ResultBean.Code.success, "上传成功", imoocUser);
                 } else {
                     resultBean = new ResultBean<>(ResultBean.Code.failure, "上传失败，请重试！");
@@ -234,9 +250,9 @@ public class ImoocUserController extends BaseController {
     }
 
     @ApiOperation(value = "用户注销")
-    @PostMapping("loginOut")
+    @GetMapping("loginOut")
     public ResultBean<ImoocUser> loginOut() {
-        session.invalidate();
+        logout();
         return new ResultBean<>(ResultBean.Code.success, "注销成功");
     }
 

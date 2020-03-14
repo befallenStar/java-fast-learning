@@ -17,5 +17,5 @@ public interface ImoocUserMapper {
 
     int updateByPrimaryKey(ImoocUser record);
 
-    ImoocUser selectByPhone(Map<String,String> map);
+    ImoocUser selectByPhone(Map<String, String> map);
 }

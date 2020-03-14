@@ -23,6 +23,9 @@ public class ImoocUser implements Serializable {
     @ApiModelProperty(value = "用户昵称")
     private String nickname;
 
+    @ApiModelProperty(value = "用户性别")
+    private String sex;
+
     @ApiModelProperty(value = "用户头像")
     private String img;
 
@@ -67,6 +70,14 @@ public class ImoocUser implements Serializable {
 
     public void setNickname(String nickname) {
         this.nickname = nickname == null ? null : nickname.trim();
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getImg() {

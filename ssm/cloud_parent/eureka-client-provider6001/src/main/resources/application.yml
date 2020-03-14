@@ -1,0 +1,11 @@
+server:
+  port: 6001
+spring:
+  application:
+    name: eureka-client-provider6001
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka

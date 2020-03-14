@@ -1,0 +1,15 @@
+server:
+  port: ${port:7001}
+spring:
+  application:
+    name: nacos-provider7001
+  cloud:
+    nacos:
+      discovery:
+        namespace: e59d4b11-e738-41c1-a38c-f909504e5dff
+        server-addr: 127.0.0.1:8848
+        cluster-name: DEFAULT
+logging:
+  level:
+    root: info
+    org.springframework: info

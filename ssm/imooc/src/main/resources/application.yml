@@ -34,6 +34,13 @@ spring:
     static-path-pattern: /**
   resources:
     static-locations: classpath:/static/
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
 #  swagger.enabled=true
 #
 #  swagger.title=spring-boot-starter-swagger

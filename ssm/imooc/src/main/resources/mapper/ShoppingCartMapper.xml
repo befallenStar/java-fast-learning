@@ -10,6 +10,19 @@
   <sql id="Base_Column_List">
     id, user_id, project_id, create_time
   </sql>
+
+  <select id="selectByUserId" parameterType="Integer" resultType="map">
+    select s.*,p.id pid,p.project_title,p.project_subtitle,p.project_price,p.project_cover
+    from shopping_cart s inner join project  p on s.project_id=p.id
+    where s.user_id=#{userId}
+    order by s.create_time desc
+  </select>
+
+  <select id="selectByUserIdAndProjectId" parameterType="map" resultMap="BaseResultMap">
+    select * from shopping_cart
+    where user_id=#{userId} and project_id=#{projectId}
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -20,6 +33,12 @@
     delete from shopping_cart
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
+<delete id="deleteByProjectId" parameterType="map">
+  delete from shopping_cart
+  where project_id=#{projectId} and user_id=#{userId}
+</delete>
+
   <insert id="insert" parameterType="com.junenatte.imooc.bean.ShoppingCart">
     insert into shopping_cart (id, user_id, project_id, 
       create_time)

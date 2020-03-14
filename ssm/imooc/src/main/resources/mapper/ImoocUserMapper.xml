@@ -7,13 +7,14 @@
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="nickname" jdbcType="VARCHAR" property="nickname"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
         <result column="img" jdbcType="VARCHAR" property="img"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate"/>
         <result column="wechat_openid" jdbcType="VARCHAR" property="wechatOpenid"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, phone, password, nickname, img, create_time, last_update, wechat_openid
+    id, phone, password, nickname, sex, img, create_time, last_update, wechat_openid
   </sql>
 
     <select id="selectByPhone" parameterType="map" resultMap="BaseResultMap">
@@ -43,8 +44,8 @@
       nickname, img, create_time, 
       last_update, wechat_openid)
     values (#{id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{nickname,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{lastUpdate,jdbcType=TIMESTAMP}, #{wechatOpenid,jdbcType=VARCHAR})
+      #{nickname,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{lastUpdate,jdbcType=TIMESTAMP}, #{wechatOpenid,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="com.junenatte.imooc.bean.ImoocUser">
         insert into imooc_user
@@ -60,6 +61,9 @@
             </if>
             <if test="nickname != null">
                 nickname,
+            </if>
+            <if test="sex != null">
+                sex,
             </if>
             <if test="img != null">
                 img,
@@ -87,6 +91,9 @@
             <if test="nickname != null">
                 #{nickname,jdbcType=VARCHAR},
             </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
             <if test="img != null">
                 #{img,jdbcType=VARCHAR},
             </if>
@@ -113,6 +120,9 @@
             <if test="nickname != null">
                 nickname = #{nickname,jdbcType=VARCHAR},
             </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
             <if test="img != null">
                 img = #{img,jdbcType=VARCHAR},
             </if>
@@ -133,6 +143,7 @@
     set phone = #{phone,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       nickname = #{nickname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
       img = #{img,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       last_update = #{lastUpdate,jdbcType=TIMESTAMP},

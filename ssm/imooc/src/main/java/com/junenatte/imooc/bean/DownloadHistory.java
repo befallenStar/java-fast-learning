@@ -20,6 +20,8 @@ public class DownloadHistory implements Serializable {
     @ApiModelProperty(value = "下载记录项目编号")
     private Integer projectId;
 
+    private Integer materialId;
+
     @ApiModelProperty(value = "下载时间")
     private Date downloadTime;
 
@@ -47,6 +49,14 @@ public class DownloadHistory implements Serializable {
 
     public void setProjectId(Integer projectId) {
         this.projectId = projectId;
+    }
+
+    public Integer getMaterialId() {
+        return materialId;
+    }
+
+    public void setMaterialId(Integer materialId) {
+        this.materialId = materialId;
     }
 
     public Date getDownloadTime() {

@@ -30,7 +30,7 @@
             <result column="material_path" jdbcType="VARCHAR" property="materialPath"/>
             <result column="material_suffix" jdbcType="VARCHAR" property="materialSuffix"/>
             <result column="material_icon" jdbcType="VARCHAR" property="materialIcon"/>
-            <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+            <result column="material_create_time" jdbcType="TIMESTAMP" property="materialCreateTime"/>
             <result column="project_id" jdbcType="INTEGER" property="projectId"/>
             <result column="type_id" javaType="INTEGER" property="typeId"/>
             <association property="projectMaterialType"
@@ -49,12 +49,18 @@
             i.id img_id, i.img_url, i.img_text, i.img_order, i.project_id
     </sql>
     <sql id="Material_Column_List">
-            m.id material_id, m.material_title, m.material_path, m.material_suffix, m.material_icon, m.create_time,
+            m.id material_id, m.material_title, m.material_path, m.material_suffix, m.material_icon, m.material_create_time,
             m.project_id, m.type_id
     </sql>
     <sql id="Type_Column_List">
-            t.id type_id, t.type_name
+            t.id type_id, t.type_name, t.type_suffix
     </sql>
+
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="Integer">
+        select * from project
+        where create_user=#{userId}
+    </select>
+
     <select id="selectAllByPrimaryKey" resultMap="BaseResultMap" parameterType="Integer">
         select
         p.*,
@@ -65,17 +71,17 @@
         <include refid="Type_Column_List"/>
         from project p left join project_imgs i on p.id=i.project_id
         left join project_material m on p.id=m.project_id
-        inner join project_material_type t on m.type_id=t.id
+        left join project_material_type t on m.type_id=t.id
         where p.id=#{id}
     </select>
     <select id="selectByParam" resultMap="BaseResultMap">
-        select * from project
+        select *from project p
         <where>
             <if test="keyword!=null">
-                keywords like #{keyword}
+                project_keywords like #{keyword}
             </if>
             <if test="param!=null">
-                and (project_name like #{param} or keywords like #{param} or project_title like
+                and (project_name like #{param} or project_keywords like #{param} or project_title like
                 #{param})
             </if>
         </where>
@@ -83,7 +89,7 @@
             order by ${ordercol} ${orderdesc}
         </if>
         <if test="ordercol==null">
-            order by istop desc,download_count desc,browse_count desc,last_update desc
+            order by p.istop desc,p.download_count desc,p.browse_count desc,p.last_update desc
         </if>
     </select>
 

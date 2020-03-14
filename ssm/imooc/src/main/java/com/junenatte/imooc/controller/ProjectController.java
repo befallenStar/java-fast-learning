@@ -29,6 +29,9 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
+/**
+ * @author 沈嘉豪
+ */
 @Api(value = "项目管理", tags = "项目管理")
 @RestController
 @RequestMapping("project")
@@ -42,6 +45,19 @@ public class ProjectController extends BaseController {
     @Value("${imooc.upload.path.project.material}")
     private String projectMaterialPath;
 
+    @GetMapping("my")
+    public ResultBean<List<Project>> my() {
+        ResultBean<List<Project>> resultBean;
+        try {
+            List<Project> projectList = mapper.selectByUserId(getCurrentImoocUser().getId());
+            resultBean = new ResultBean<>(ResultBean.Code.success, "查询成功", projectList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            resultBean = new ResultBean<>(ResultBean.Code.exception, "查询异常");
+        }
+        return resultBean;
+    }
+
     @ApiOperation(value = "项目细节查询")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "项目编号", dataType = "Integer", paramType = "query")
@@ -49,7 +65,6 @@ public class ProjectController extends BaseController {
     @GetMapping("detail")
     public ResultBean<Project> detail(Integer id) {
         ResultBean<Project> resultBean;
-        System.out.println(id);
         try {
             Project project = mapper.selectAllByPrimaryKey(id);
             if (null != project) {
@@ -131,7 +146,6 @@ public class ProjectController extends BaseController {
                     dir.mkdir();
                 }
                 File file = new File(dir, newName);
-                System.out.println(file);
                 cover.transferTo(file);
                 resultBean = new ResultBean<>(ResultBean.Code.success, "上传成功", coverSavePath + "/" + newName);
             } else {
@@ -157,12 +171,12 @@ public class ProjectController extends BaseController {
             project.setCreateUser(getCurrentImoocUser().getId());
             int rows = mapper.insertSelective(project);
             if (rows > 0) {
-                resultBean = new ResultBean<>(ResultBean.Code.success, "", project);
+                resultBean = new ResultBean<>(ResultBean.Code.success, "上传成功", project);
             } else {
-                resultBean = new ResultBean<>(ResultBean.Code.failure, "");
+                resultBean = new ResultBean<>(ResultBean.Code.failure, "上传失败");
             }
         } catch (Exception e) {
-            resultBean = new ResultBean<>(ResultBean.Code.exception, "");
+            resultBean = new ResultBean<>(ResultBean.Code.exception, "上传异常");
         }
         return resultBean;
     }
