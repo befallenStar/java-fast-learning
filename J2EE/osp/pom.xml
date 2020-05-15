@@ -28,7 +28,7 @@
         <!-- easy poi 版本 -->
         <easypoi.version>4.1.0</easypoi.version>
         <!--fasterxml版本-->
-        <fasterxml.version>2.9.9</fasterxml.version>
+        <fasterxml.version>2.11.0</fasterxml.version>
     </properties>
 
     <dependencies>
