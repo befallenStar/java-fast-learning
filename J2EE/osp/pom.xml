@@ -18,7 +18,7 @@
         <mybatis.version>3.5.1</mybatis.version>
         <!-- log4j日志文件管理包版本 -->
         <slf4j.version>2.0.0-alpha0</slf4j.version>
-        <log4j.version>2.12.0</log4j.version>
+        <log4j.version>2.13.2</log4j.version>
         <!-- swagger2版本 -->
         <swagger2.version>2.9.2</swagger2.version>
         <!-- shiro版本 -->
