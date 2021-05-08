@@ -22,7 +22,7 @@
         <!-- swagger2版本 -->
         <swagger2.version>2.9.2</swagger2.version>
         <!-- shiro版本 -->
-        <shiro.version>1.4.1</shiro.version>
+        <shiro.version>1.6.0</shiro.version>
         <!-- freemarker版本 -->
         <freemarker.version>2.3.28</freemarker.version>
         <!-- easy poi 版本 -->
